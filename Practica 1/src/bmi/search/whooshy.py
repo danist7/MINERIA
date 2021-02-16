@@ -84,21 +84,25 @@ class WhooshIndex(Index):
     def doc_freq(self, term):
         return self.reader.doc_frequency("content", term)
 
-    # Devuelve una lista de tuplas, una por cada termino del indice
-    # Las tuplas son de la forma ("content", termino)
+    # Devuelve una lista con todos los términos del indice
     def all_terms(self):
-        return list(self.reader.all_terms())
+        list = []
+        for t in self.reader.all_terms():
+            if str(t[0]) == "content":
+                list.append(t[1].decode("utf-8"))
+
+        return list
 
     # Devuelve una lista de tuplas, una por cada termino del indice
     # Las tuplas son de la forma (termino, frecuencia total en el indice)
     def all_terms_with_freq(self):
         list = []
         terms = self.all_terms()
-        # Por cada tupla, obtiene el termino (segundo elemento) y calcula
-        # su frecuencia total
+        # Por cada termino calcula la frecuencia total
         for t in terms:
-            freq = self.total_freq(t[1])
-            list.append((t[1], freq))
+            freq = self.total_freq(t)
+            list.append((t, freq))
+
         return list
 
     # Devuelve la frecuencia total deun termino en el indice
