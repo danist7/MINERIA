@@ -18,18 +18,40 @@ class TermFreq():
 
 
 class Index:
-    def __init__(self, ...):
-        ## TODO ##
-        # Your code here #
+    index = None
+    reader = None
+    def __init__(self):
+        return
 
     def doc_freq(self, term):
-        ## TODO ##
-        # Your code here #
-    def TODO(self, ...):
-        ## TODO ##
-        # Your code here #
+        reader = index.reader();
+        return
+    def all_terms(self):
+        return
+    def all_terms_with_freq(self):
+        # devuelve tupla
+        return
+    def total_freq(self, term):
+        return
+    def doc_vector(self, doc_id):
+        # tupla término/frecuencia en TermFreq
+        return
+    def doc_path(self, doc_id):
+        return
+    def term_freq(self, term, doc_id):
+        return
+    def postings(self, term):
+        # lista de tuplas documento/ frecuencia
+        return
+
+
 
 
 class Builder:
-        ## TODO ##
-        # Your code here #
+    writer = None
+    def __init__(self):
+        return
+    def build(self, collection):
+        return
+    def commit(self):
+        return

@@ -25,9 +25,11 @@ class Searcher(ABC):
 
 
 class VSMDotProductSearcher(Searcher):
+    hola = None
     ## TODO ##
     # Your code here #
 
 class VSMCosineSearcher(VSMDotProductSearcher):
+    hola2 = None
     ## TODO ##
     # Your code here #

@@ -49,13 +49,13 @@ def examine(dir, term, docid, n):
     raw_vec = reader.vector(docid, "content")
     raw_vec.skip_to("probability")
     print("Frequency of '", raw_vec.id(), "' in document", docid, reader.stored_fields(docid)['path'], ":", raw_vec.value_as("frequency"))
-    print("Top", n, "most frequent terms in document", docid, reader.stored_fields(docid)['path']) 
+    print("Top", n, "most frequent terms in document", docid, reader.stored_fields(docid)['path'])
     vec = reader.vector(docid, "content").items_as("frequency")
     for p in sorted(vec, key=lambda x: x[1], reverse=True)[0:n]:
         print("\t", p)
     print()
 
-urls = ["https://en.wikipedia.org/wiki/Simpson's_paradox", 
+urls = ["https://en.wikipedia.org/wiki/Simpson's_paradox",
         "https://en.wikipedia.org/wiki/Bias",
         "https://en.wikipedia.org/wiki/Entropy"]
 

@@ -16,8 +16,8 @@ def main():
     index_root_dir = "./index/index_"
     test_collection ("./data/toy/", index_root_dir + "toy", "cc", "aa dd")
     collections_root_dir = "./data/collections/"
-    test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls", "wikipedia", "information probability")
-    test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs", "seat", "obama family tree")
+    #test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls", "wikipedia", "information probability")
+    #test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs", "seat", "obama family tree")
 
 def clear (index_path: str):
     if not os.path.isdir(index_path):
@@ -39,7 +39,7 @@ def test_collection(collection_path: str, index_path: str, word: str, query: str
 
     # We now test building an index
     test_build(WhooshBuilder(index_path), collection_path)
-
+"""
     # We now inspect the index
     index = WhooshIndex(index_path)
     test_read(index, word)
@@ -48,7 +48,7 @@ def test_collection(collection_path: str, index_path: str, word: str, query: str
     print("Checking search results")
     test_search(WhooshSearcher(index_path), query, 5)
     test_search(VSMDotProductSearcher(WhooshIndex(index_path)), query, 5)
-    test_search(VSMCosineSearcher(WhooshIndex(index_path)), query, 5)
+    test_search(VSMCosineSearcher(WhooshIndex(index_path)), query, 5)"""
 
 def test_build(builder, collection):
     stamp = time.time()
