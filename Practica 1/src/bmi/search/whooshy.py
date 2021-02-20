@@ -110,7 +110,7 @@ class WhooshIndex(Index):
     def total_freq(self, term):
         return self.reader.frequency("content", term)
 
-    # Devuelve una lista de elementos de tipo TermFreq, que contienen tuplas de
+    # Devuelve un lista de elementos de tipo TermFreq, que contienen tuplas de
     # la forma (termino, frecuencia en el documento)
     def doc_vector(self, doc_id):
         list = []
@@ -140,6 +140,14 @@ class WhooshIndex(Index):
 
 
 class WhooshSearcher(Searcher):
-    hola4 = None
-    ## TODO ##
-    # Your code here #
+
+    def __init__(self,path):
+        index = whoosh.index.open_dir(path)
+        super().__init__(index,QueryParser("content", schema=index.schema))
+        return
+
+    def search(self, query, cutoff):
+        list = []
+        for docid, score in self.index.searcher().search(self.parser.parse(query)).items():
+            list.append((self.index.reader().stored_fields(docid)['path'],score))
+        return list

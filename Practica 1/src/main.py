@@ -17,7 +17,7 @@ def main():
     test_collection ("./data/toy/", index_root_dir + "toy", "cc", "aa dd")
     collections_root_dir = "./data/collections/"
     test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls", "wikipedia", "information probability")
-    test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs", "seat", "obama family tree")
+    #test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs", "seat", "obama family tree")
 
 def clear (index_path: str):
     if not os.path.isdir(index_path):
@@ -42,11 +42,11 @@ def test_collection(collection_path: str, index_path: str, word: str, query: str
     # We now inspect the index
     index = WhooshIndex(index_path)
     test_read(index, word)
-"""
+
     print("------------------------------")
     print("Checking search results")
     test_search(WhooshSearcher(index_path), query, 5)
-    test_search(VSMDotProductSearcher(WhooshIndex(index_path)), query, 5)
+    """test_search(VSMDotProductSearcher(WhooshIndex(index_path)), query, 5)
     test_search(VSMCosineSearcher(WhooshIndex(index_path)), query, 5)"""
 
 def test_build(builder, collection):
@@ -77,7 +77,8 @@ def test_read(index, word):
     # this method provides a vector of tuples
     # for each doc: (term, freq), encapsulated in a TermFreq object (in module index)
     vector = index.doc_vector(doc_id)
-    initialTerm = vector.size() / 2
+    #initialTerm = vector.size() / 2
+    initialTerm = len(vector)/ 2
     nTerms = 5
     print("  A few term frequencies for doc_id = " + str(doc_id) + " - " + index.doc_path(doc_id) + ": ")
     i = 0
