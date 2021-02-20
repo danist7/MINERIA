@@ -17,7 +17,7 @@ def main():
     test_collection ("./data/toy/", index_root_dir + "toy", "cc", "aa dd")
     collections_root_dir = "./data/collections/"
     test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls", "wikipedia", "information probability")
-    #test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs", "seat", "obama family tree")
+    test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs", "seat", "obama family tree")
 
 def clear (index_path: str):
     if not os.path.isdir(index_path):
