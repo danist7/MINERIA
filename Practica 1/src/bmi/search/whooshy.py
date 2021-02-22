@@ -14,7 +14,8 @@ from whoosh.formats import Format
 from whoosh.qparser import QueryParser
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import os, os.path
+import os
+import os.path
 import shutil
 import pathlib
 import zipfile
@@ -25,13 +26,14 @@ from bmi.search.search import Searcher
 from bmi.search.index import Index
 from bmi.search.index import Builder
 from bmi.search.index import TermFreq
+import math
 
 # A schema in Whoosh is the set of possible fields in a document in
 # the search space. We just define a simple 'Document' schema
 Document = Schema(
-        path=ID(stored=True),
-        title=TEXT(stored=True),
-        content=TEXT(vector=Format))
+    path=ID(stored=True),
+    title=TEXT(stored=True),
+    content=TEXT(vector=Format))
 
 
 class WhooshBuilder(Builder):
@@ -47,7 +49,8 @@ class WhooshBuilder(Builder):
         try:
             for path in pathlib.Path(collection_path).iterdir():
                 path = "./" + str(path)
-                self.writer.add_document(path=path, content=BeautifulSoup(open(path, "r").read(), "lxml").text)
+                self.writer.add_document(path=path, content=BeautifulSoup(
+                    open(path, "r").read(), "lxml").text)
             return
         except Exception:
             pass
@@ -56,14 +59,16 @@ class WhooshBuilder(Builder):
             with zipfile.ZipFile(collection_path, "r") as f:
                 for name in f.namelist():
                     data = f.read(name)
-                    self.writer.add_document(path=name, content=BeautifulSoup(data, "lxml").text)
+                    self.writer.add_document(
+                        path=name, content=BeautifulSoup(data, "lxml").text)
             return
         # Caso txt
         except Exception:
             f = open(collection_path, "r")
             urls = f.readlines()
             for url in urls:
-                self.writer.add_document(path=url, content=BeautifulSoup(urlopen(url).read(), "lxml").text)
+                self.writer.add_document(path=url, content=BeautifulSoup(
+                    urlopen(url).read(), "lxml").text)
             f.close()
             return
 
@@ -72,10 +77,12 @@ class WhooshBuilder(Builder):
         return
 
 # Clase que representa un indice
+
+
 class WhooshIndex(Index):
 
     # Abre el indice guardado en el directorio dado y crea el reader
-    def __init__(self,path):
+    def __init__(self, path):
         self.index = whoosh.index.open_dir(path)
         self.reader = self.index.reader()
         return
@@ -105,7 +112,7 @@ class WhooshIndex(Index):
 
         return list
 
-    # Devuelve la frecuencia total deun termino en el indice
+    # Devuelve la frecuencia total de un termino en el indice
     # TODO: Revisar
     def total_freq(self, term):
         return self.reader.frequency("content", term)
@@ -119,7 +126,7 @@ class WhooshIndex(Index):
             list.append(TermFreq(t))
         return list
 
-    # Devuelve elpath de un documento
+    # Devuelve el path de un documento
     def doc_path(self, doc_id):
         return self.reader.stored_fields(doc_id)['path']
 
@@ -134,20 +141,24 @@ class WhooshIndex(Index):
     def postings(self, term):
         list = []
         for doc in self.reader.all_doc_ids():
-            freq = self.term_freq(term,doc)
-            list.append((doc,freq))
+            freq = self.term_freq(term, doc)
+            list.append((doc, freq))
         return list
+
+
+# TODO: Y el cutoff?
 
 
 class WhooshSearcher(Searcher):
 
-    def __init__(self,path):
+    def __init__(self, path):
         index = whoosh.index.open_dir(path)
-        super().__init__(index,QueryParser("content", schema=index.schema))
+        super().__init__(index, QueryParser("content", schema=index.schema))
         return
 
     def search(self, query, cutoff):
         list = []
         for docid, score in self.index.searcher().search(self.parser.parse(query)).items():
-            list.append((self.index.reader().stored_fields(docid)['path'],score))
+            list.append(
+                (self.index.reader().stored_fields(docid)['path'], score))
         return list

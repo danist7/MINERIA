@@ -46,8 +46,8 @@ def test_collection(collection_path: str, index_path: str, word: str, query: str
     print("------------------------------")
     print("Checking search results")
     test_search(WhooshSearcher(index_path), query, 5)
-    """test_search(VSMDotProductSearcher(WhooshIndex(index_path)), query, 5)
-    test_search(VSMCosineSearcher(WhooshIndex(index_path)), query, 5)"""
+    test_search(VSMDotProductSearcher(WhooshIndex(index_path)), query, 5)
+    """test_search(VSMCosineSearcher(WhooshIndex(index_path)), query, 5)"""
 
 def test_build(builder, collection):
     stamp = time.time()
