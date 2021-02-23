@@ -45,27 +45,25 @@ class VSMDotProductSearcher(Searcher):
                 dicterms[term] = 1
         # Diccionario para guardar los docsid y su score
         docids = {}
-        # TODO: Preguntar si se puede hacer binario
+        
         for term in terms:
             # Calculamos el idf para el termino
-            idf = math.log((self.index.ndocs()+1) / (self.index.doc_freq(term)+0.5), 2)
-            tf = 1 + math.log(dicterms[term], 2)
-            qi = tf*idf
+            idf = math.log((self.index.ndocs()+1) / (self.index.doc_freq(term)+0.5))
+
             # Calculamos el tf para cada documento y guardamos el tf*idf
             for posting in self.index.postings(term):
                 if posting[1] == 0:
                     tf = 0
                 else:
-                    tf = 1 + math.log(posting[1], 2)
+                    tf = 1 + math.log(posting[1])
 
                 if posting[0] in docids:
                     docids[posting[0]] = docids[posting[0]] + tf * idf
                 else:
                     docids[posting[0]] = tf * idf
 
-                docids[posting[0]] = docids[posting[0]]*qi
         # Ordenamos de menor a mayor
-        order_docids = sorted(docids.items(), key=lambda item: item[1])
+        order_docids = sorted(docids.items(), key=lambda item: -item[1])
 
         ret = []
 
