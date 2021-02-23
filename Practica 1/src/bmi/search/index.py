@@ -60,6 +60,7 @@ class Index:
 
 
 class Builder:
+    index = None
     writer = None
 
     def __init__(self):

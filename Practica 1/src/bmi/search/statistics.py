@@ -11,6 +11,7 @@ def term_stats(index):
         freq_dic[term] = freq
 
         postings = index.postings(term)
+        # Hay que coger donde postings[1] != 0
         doc_dic[term] = len(postings)
 
     order_freq = sorted(freq_dic.items(), key=lambda item: -item[1])

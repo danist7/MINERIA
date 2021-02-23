@@ -41,7 +41,8 @@ class WhooshBuilder(Builder):
         if os.path.exists(path):
             shutil.rmtree(path)
         os.makedirs(path)
-        self.writer = whoosh.index.create_in(path, Document).writer()
+        self.index = whoosh.index.create_in(path, Document)
+        self.writer = self.index.writer()
         return
 
     def build(self, collection_path):
@@ -73,6 +74,7 @@ class WhooshBuilder(Builder):
             return
 
     def commit(self):
+        #TODO : Dani hace lo de los modulos
         self.writer.commit()
         return
 
@@ -151,6 +153,8 @@ class WhooshIndex(Index):
             freq = self.term_freq(term, doc)
             list.append((doc, freq))
         return list
+
+
 
 
 # TODO: Y el cutoff?
