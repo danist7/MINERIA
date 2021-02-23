@@ -91,6 +91,10 @@ class WhooshIndex(Index):
     def doc_freq(self, term):
         return self.reader.doc_frequency("content", term)
 
+    #Devuelve el número total de documentos
+    def ndocs(self):
+        return self.reader.doc_count()
+
     # Devuelve una lista con todos los términos del indice
     def all_terms(self):
         list = []
