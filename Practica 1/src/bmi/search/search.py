@@ -45,7 +45,7 @@ class VSMDotProductSearcher(Searcher):
                 dicterms[term] = 1
         # Diccionario para guardar los docsid y su score
         docids = {}
-        
+
         for term in terms:
             # Calculamos el idf para el termino
             idf = math.log((self.index.ndocs()+1) / (self.index.doc_freq(term)+0.5))
@@ -62,8 +62,40 @@ class VSMDotProductSearcher(Searcher):
                 else:
                     docids[posting[0]] = tf * idf
 
+        if cutoff == -1:
+            return docids
         # Ordenamos de menor a mayor
         order_docids = sorted(docids.items(), key=lambda item: -item[1])
+
+        ret = []
+
+
+
+        for i in range(min(len(order_docids), cutoff)):
+            doc = order_docids[i]
+            ret.append((self.index.doc_path(doc[0]), doc[1]))
+        return ret
+
+# TODO: Pasar al builder lo de los modulos
+class VSMCosineSearcher(VSMDotProductSearcher):
+
+    def search(self, query, cutoff):
+        prodvec = super().search(query,-1)
+        for id in prodvec:
+            modulo = 0
+            terms = self.index.doc_vector(id)
+            for TermFreq in terms:
+                idf = math.log((self.index.ndocs()+1) / (self.index.doc_freq(TermFreq.term())+0.5))
+                if TermFreq.freq() == 0:
+                    tf = 0
+                else:
+                    tf = 1 + math.log(TermFreq.freq())
+                modulo = modulo + pow(idf*tf,2)
+
+            modulo = math.sqrt(modulo)
+            prodvec[id] = prodvec[id]/modulo
+
+        order_docids = sorted(prodvec.items(), key=lambda item: -item[1])
 
         ret = []
 
@@ -71,9 +103,3 @@ class VSMDotProductSearcher(Searcher):
             doc = order_docids[i]
             ret.append((self.index.doc_path(doc[0]), doc[1]))
         return ret
-
-
-class VSMCosineSearcher(VSMDotProductSearcher):
-    hola2 = None
-    ## TODO ##
-    # Your code here #

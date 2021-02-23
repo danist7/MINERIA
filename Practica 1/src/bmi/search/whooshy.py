@@ -168,4 +168,8 @@ class WhooshSearcher(Searcher):
         for docid, score in self.index.searcher().search(self.parser.parse(query)).items():
             list.append(
                 (self.index.reader().stored_fields(docid)['path'], score))
+
+        if cutoff < len(list):
+            return list[:cutoff]
+
         return list
