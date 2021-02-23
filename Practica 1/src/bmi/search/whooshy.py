@@ -137,8 +137,10 @@ class WhooshIndex(Index):
     # Devuelve la frecuencia de un termino en un documento
     def term_freq(self, term, doc_id):
         vec = self.reader.vector(doc_id, "content")
-        vec.skip_to(term)
-        return vec.value_as("frequency")
+        if(vec.skip_to(term) != None):
+            return vec.value_as("frequency")
+        else:
+            return 0
 
     # Devuelve una lista de tuplas de la forma
     # (id del documento, frecuencia del termino)
