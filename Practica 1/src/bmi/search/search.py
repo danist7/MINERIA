@@ -49,7 +49,7 @@ class VSMDotProductSearcher(Searcher):
         for term in terms:
             # Calculamos el idf para el termino
             idf = math.log((self.index.ndocs()+1) / (self.index.doc_freq(term)+0.5))
-
+    
             # Calculamos el tf para cada documento y guardamos el tf*idf
             for posting in self.index.postings(term):
                 if posting[1] == 0:
@@ -81,18 +81,9 @@ class VSMCosineSearcher(VSMDotProductSearcher):
 
     def search(self, query, cutoff):
         prodvec = super().search(query,-1)
+        f = open("./index/modulos.txt", "r")
         for id in prodvec:
-            modulo = 0
-            terms = self.index.doc_vector(id)
-            for TermFreq in terms:
-                idf = math.log((self.index.ndocs()+1) / (self.index.doc_freq(TermFreq.term())+0.5))
-                if TermFreq.freq() == 0:
-                    tf = 0
-                else:
-                    tf = 1 + math.log(TermFreq.freq())
-                modulo = modulo + pow(idf*tf,2)
-
-            modulo = math.sqrt(modulo)
+            modulo = float(f.readline().split()[1])
             prodvec[id] = prodvec[id]/modulo
 
         order_docids = sorted(prodvec.items(), key=lambda item: -item[1])

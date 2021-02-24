@@ -41,8 +41,8 @@ class WhooshBuilder(Builder):
         if os.path.exists(path):
             shutil.rmtree(path)
         os.makedirs(path)
-        self.index = whoosh.index.create_in(path, Document)
-        self.writer = self.index.writer()
+        self.writer = whoosh.index.create_in(path, Document).writer()
+        self.path = path
         return
 
     def build(self, collection_path):
@@ -74,8 +74,25 @@ class WhooshBuilder(Builder):
             return
 
     def commit(self):
-        #TODO : Dani hace lo de los modulos
+        f = open("./index/modulos.txt", "w")
         self.writer.commit()
+        index = WhooshIndex(self.path)
+        docs = index.all_doc_ids()
+        for id in docs:
+            modulo = 0
+            terms = index.doc_vector(id)
+            for TermFreq in terms:
+                idf = math.log((index.ndocs()+1) / (index.doc_freq(TermFreq.term())+0.5))
+                if TermFreq.freq() == 0:
+                    tf = 0
+                else:
+                    tf = 1 + math.log(TermFreq.freq())
+                modulo = modulo + pow(idf*tf,2)
+
+            modulo = math.sqrt(modulo)
+            f.write(str(id) + " " + str(modulo) + '\n' )
+
+        f.close()
         return
 
 # Clase que representa un indice
@@ -154,6 +171,9 @@ class WhooshIndex(Index):
             list.append((doc, freq))
         return list
 
+    # Devuelve un alista de todos los ids de documentos del indice
+    def all_doc_ids(self):
+        return self.reader.all_doc_ids()
 
 
 
