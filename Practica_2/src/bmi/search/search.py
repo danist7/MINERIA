@@ -9,7 +9,9 @@
 """
 
 import math
+import heapq
 from abc import ABC, abstractmethod
+from bmi.search.index import BasicParser
 
 def tf(freq):
     return 1 + math.log2(freq) if freq > 0 else 0
@@ -21,16 +23,26 @@ class SearchRanking:
     # TODO: to be implemented as heap (exercise 1.3) #
     def __init__(self, cutoff):
         self.ranking = list()
+        heapq.heapify(self.ranking)
         self.cutoff = cutoff
+        self.status = 0
 
     def push(self, docid, score):
-        self.ranking.append((docid, score))
+        if self.status < self.cutoff:
+            heapq.heappush(self.ranking,(score,docid))
+            self.status += 1
+        else:
+            item = heapq.heappop(self.ranking)
+            if item[0] < score:
+                heapq.heappush(self.ranking,(score,docid))
+            else:
+                heapq.heappush(self.ranking,item)
 
     def __iter__(self):
-        min_l = min(len(self.ranking), self.cutoff)
+        #min_l = min(len(self.ranking), self.cutoff)
         ## sort ranking
-        self.ranking.sort(key=lambda tup: tup[1], reverse=True)
-        return iter(self.ranking[0:min_l])
+        #self.ranking.sort(key=lambda tup: tup[1], reverse=True)
+        return iter([(item[1],item[0]) for item in heapq.nlargest(self.cutoff,self.ranking)])
 
 """
     This is an abstract class for the search engines
@@ -68,9 +80,26 @@ class SlowVSMSearcher(Searcher):
         return 0
 
 class TermBasedVSMSearcher(Searcher):
-    # Your new code here (exercise 1.1) #
-    pass
 
+    # TODO ver que hacer con el parser
+    def __init__(self, index, parser=BasicParser()):
+        super().__init__(index, parser)
+
+    def search(self, query, cutoff):
+        dic = {}
+        qterms = self.parser.parse(query)
+        ranking = SearchRanking(cutoff)
+        for term in qterms:
+            for posting in self.index.postings(term):
+                tfs = tf(posting[1])
+                idfs = idf(self.index.doc_freq(term),self.index.ndocs())
+                if posting[0] in dic:
+                    dic[posting[0]] += tfs*idfs
+                else:
+                    dic[posting[0]] = tfs*idfs
+        for docid in dic:
+            ranking.push(self.index.doc_path(docid), dic[docid]/self.index.doc_module(docid))
+        return ranking
 class DocBasedVSMSearcher(Searcher):
     # Your new code here (exercise 1.2*) #
     pass

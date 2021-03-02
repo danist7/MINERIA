@@ -84,7 +84,7 @@ class Index:
         if not self.modulemap: self.compute_modules()
         p = os.path.join(dir, Config.NORMS_FILE)
         with open(p, 'wb') as f:
-            pickle.dump(self.modulemap, f)        
+            pickle.dump(self.modulemap, f)
     def open(self, dir):
         try:
             p = os.path.join(dir, Config.NORMS_FILE)
@@ -164,9 +164,8 @@ class PositionalIndex(Index):
     # if your index extends a particular type of index
     # For example: PositionalIndex(RAMIndex)
     pass
-
+"""
 class PositionalIndexBuilder(IndexBuilder):
     # Your new code here (exercise 5*) #
     # Same note as for PositionalIndex
-    pass
-
+    pass"""
