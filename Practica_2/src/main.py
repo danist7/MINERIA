@@ -43,7 +43,7 @@ def test_collection(collection_path: str, index_path: str, word: str, queries: l
     print("Testing indices and search on " + collection_path)
 
     # We now test building different implementations of an index
-    #test_build(WhooshBuilder(index_path + "whoosh"), collection_path)
+    test_build(WhooshBuilder(index_path + "whoosh"), collection_path)
     #test_build(WhooshForwardBuilder(index_path + "whoosh_fwd"), collection_path)
     #test_build(WhooshPositionalBuilder(index_path + "whoosh_pos"), collection_path)
     test_build(RAMIndexBuilder(index_path + "ram"), collection_path)
@@ -52,7 +52,7 @@ def test_collection(collection_path: str, index_path: str, word: str, queries: l
 
     # We now inspect all the implementations
     indices = [
-            #WhooshIndex(index_path + "whoosh"),
+            WhooshIndex(index_path + "whoosh"),
             #WhooshForwardIndex(index_path + "whoosh_fwd"),
             #WhooshPositionalIndex(index_path + "whoosh_pos"),
             RAMIndex(index_path + "ram"),

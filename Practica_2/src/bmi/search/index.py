@@ -180,11 +180,13 @@ class Builder:
 
 class RAMIndex(Index):
     def __init__(self, dir=None):
-        self.modulemap = {}
-        self.docmap = []
+        #self.modulemap = {}
+        #self.docmap = []
+        super().__init__(dir)
+
+
         self.diccionario = set()
         self.postingsdict = {}
-        super().save(dir)
         if not dir :
             return
         # Abrimos el fichero de los paths
@@ -202,6 +204,8 @@ class RAMIndex(Index):
         file = open(p,'rb')
         self.postingsdict = pickle.load(file)
         file.close()
+
+        super().save(dir)
 
     def postings(self, term):
         lista = self.postingsdict[term]

@@ -81,6 +81,7 @@ class SlowVSMSearcher(Searcher):
             prod += tf(self.index.term_freq(term, docid)) \
                     * idf(self.index.doc_freq(term), self.index.ndocs())
         mod = self.index.doc_module(docid)
+        
         if mod:
             return prod / mod
         return 0
