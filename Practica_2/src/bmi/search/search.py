@@ -11,7 +11,13 @@
 import math
 import heapq
 from abc import ABC, abstractmethod
-from bmi.search.index import BasicParser
+import re
+#from bmi.search.index import BasicParser
+
+class BasicParser:
+    @staticmethod
+    def parse(text):
+        return re.findall(r"[^\W\d_]+|\d+", text.lower())
 
 def tf(freq):
     return 1 + math.log2(freq) if freq > 0 else 0
