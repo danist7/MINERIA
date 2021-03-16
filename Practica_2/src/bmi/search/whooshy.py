@@ -22,13 +22,13 @@ from bmi.search.index import TermFreq
 # a path (a URL or local pathname) and a content.
 SimpleDocument = Schema(
         path=ID(stored=True),
-        content=TEXT(phrase=False,vector=Format))
+        content=TEXT(phrase=False))
 ForwardDocument = Schema(
         path=ID(stored=True),
         content=TEXT(phrase=False,vector=Format))
 PositionalDocument = Schema(
         path=ID(stored=True),
-        content=TEXT(phrase=True,vector=Format))
+        content=TEXT(phrase=True))
 
 class WhooshBuilder(Builder):
     def __init__(self, dir, schema=SimpleDocument):
@@ -63,7 +63,7 @@ class WhooshPositionalBuilder(WhooshBuilder):
 class WhooshIndex(Index):
     def __init__(self, dir):
         super().__init__(dir)
-        self.whoosh_reader = whoosh.index.open_dir(dir).reader()    
+        self.whoosh_reader = whoosh.index.open_dir(dir).reader()
     def total_freq(self, term):
         return self.whoosh_reader.frequency("content", term)
     def doc_freq(self, term):
@@ -85,7 +85,7 @@ class WhooshForwardIndex(WhooshIndex):
             for e in self.whoosh_reader.vector_as("frequency", docID, "content"):
                 dv.append(TermFreq(e))
             return dv
-        print("Error: no doc vector for %s!" % (str(docID)))      
+        print("Error: no doc vector for %s!" % (str(docID)))
         return list()
     def term_freq(self, term, docID) -> int:
         if self.whoosh_reader.has_vector(docID, "content"):
@@ -95,7 +95,7 @@ class WhooshForwardIndex(WhooshIndex):
                 return v.value_as("frequency")
         return 0
 
-class WhooshPositionalIndex(WhooshForwardIndex):
+class WhooshPositionalIndex(WhooshIndex):
     def positional_postings(self, term):
         return self.whoosh_reader.postings("content", term).items_as("positions") \
             if self.doc_freq(term) > 0 else []
