@@ -31,7 +31,7 @@ from bmi.search.whooshy import (
 def main():
     index_root_dir = "./index/"
     collections_root_dir = "./data/collections/"
-    #test_collection (collections_root_dir + "toy1/", index_root_dir + "toy1/", "cc", ["aa dd", "aa"], False)
+    test_collection (collections_root_dir + "toy1/", index_root_dir + "toy1/", "cc", ["aa dd", "aa"], False)
     #test_collection (collections_root_dir + "toy2/", index_root_dir + "toy2/", "aa", ["aa cc", "bb aa"], False)
     #test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls/", "wikipedia", ["information probability", "probability information", "higher probability"], True)
     #test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs1k/", "seat", ["obama family tree"], True)
@@ -74,7 +74,7 @@ def test_collection(collection_path: str, index_path: str, word: str, queries: l
             # our searchers should work with any other index
             test_search(SlowVSMSearcher(index), index, query, 5)
             test_search(TermBasedVSMSearcher(index), index, query, 5)
-            #test_search(DocBasedVSMSearcher(index), index, query, 5)
+            test_search(DocBasedVSMSearcher(index), index, query, 5)
         #test_search(ProximitySearcher(PositionalIndex(index_path + "pos")), PositionalIndex(index_path + "pos"), query, 5)
 
     # if we keep the list in memory, there may be problems with accessing the same index twice

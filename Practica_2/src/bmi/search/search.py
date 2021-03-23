@@ -12,7 +12,7 @@ import math
 import heapq
 from abc import ABC, abstractmethod
 import re
-#from bmi.search.index import BasicParser
+# from bmi.search.index import BasicParser
 
 
 class BasicParser:
@@ -49,9 +49,9 @@ class SearchRanking:
                 heapq.heappush(self.ranking, item)
 
     def __iter__(self):
-        #min_l = min(len(self.ranking), self.cutoff)
+        # min_l = min(len(self.ranking), self.cutoff)
         # sort ranking
-        #self.ranking.sort(key=lambda tup: tup[1], reverse=True)
+        # self.ranking.sort(key=lambda tup: tup[1], reverse=True)
         return iter([(item[1], item[0]) for item in heapq.nlargest(self.cutoff, self.ranking)])
 
 
@@ -120,8 +120,47 @@ class TermBasedVSMSearcher(Searcher):
 
 
 class DocBasedVSMSearcher(Searcher):
-    # Your new code here (exercise 1.2*) #
-    pass
+
+    def __init__(self, index, parser=BasicParser()):
+        super().__init__(index, parser)
+
+    def search(self, query, cutoff):
+        qterms = self.parser.parse(query)
+        ranking = SearchRanking(cutoff)
+        heap = list()
+        heapq.heapify(heap)
+        postings_list = {}
+
+        for term in qterms:
+            # Guardamos para cada termino sus postings y la posicion actual
+            postings_list[term] = [item for item in self.index.postings(term)]
+
+            # Almacenamos en el heap la tripleta (docid ,score, termino) del primer docid de los postings
+            posting = postings_list[term].pop(0)
+            heapq.heappush(heap, (posting[0], self.score(posting[1], term), term))
+
+        id = -1
+        sc = 0
+        while len(heap) > 0:
+            item = heapq.heappop(heap)
+            if id != item[0]:
+                if id  != -1:
+                    ranking.push(self.index.doc_path(id),sc/self.index.doc_module(id))
+                id = item[0]
+                sc = 0
+
+            sc += item[1]
+
+            if len(postings_list[item[2]]) > 0:
+                posting = postings_list[item[2]].pop(0)
+                heapq.heappush(heap, (posting[0], self.score(posting[1], item[2]), item[2]))
+
+        ranking.push(self.index.doc_path(id),sc/self.index.doc_module(id))
+        return ranking
+
+    def score(self, freq, term):
+        return tf(freq) * idf(self.index.doc_freq(term), self.index.ndocs())
+
 
 
 class ProximitySearcher(Searcher):
@@ -135,48 +174,48 @@ class PagerankDocScorer():
         # Your new code here (exercise 6) #
         # Format of graphfile:
         #  node1 node2
-        out = {}
-        p = {}
-        p_prima = {}
-        links = []
+        out={}
+        p={}
+        p_prima={}
+        links=[]
         with open(graphfile, "r") as f:
             while True:
-                linea = f.readline()
+                linea=f.readline()
                 if not linea:
                     break
-                nodos = linea.split()
+                nodos=linea.split()
                 links.append(nodos)
                 if nodos[0] in out:
                     out[nodos[0]] += 1
                 else:
-                    out[nodos[0]] = 1
+                    out[nodos[0]]=1
 
                 if nodos[1] not in out:
-                    out[nodos[1]] = 0
+                    out[nodos[1]]=0
 
-        N = len(out)
+        N=len(out)
         for item in out:
-            p[item] = 1 / N
+            p[item]=1 / N
 
         for d in range(n_iter):
             for i in p:
-                p_prima[i] = r / N
+                p_prima[i]=r / N
             for k in links:
-                i = k[0]
-                j = k[1]
-                p_prima[j] = p_prima[j] + (1 - r) * p[i] / out[i]
+                i=k[0]
+                j=k[1]
+                p_prima[j]=p_prima[j] + (1 - r) * p[i] / out[i]
             for i in p_prima:
-                p[i] = p_prima[i]
+                p[i]=p_prima[i]
 
-        self.p = p
+        self.p=p
 
     def rank(self, cutoff):
-        order_docids = sorted(self.p.items(), key=lambda item: -item[1])
+        order_docids=sorted(self.p.items(), key=lambda item: -item[1])
 
-        ret = []
+        ret=[]
 
         for i in range(min(len(order_docids), cutoff)):
-            doc = order_docids[i]
+            doc=order_docids[i]
             ret.append((doc[0], doc[1]))
 
         return ret
