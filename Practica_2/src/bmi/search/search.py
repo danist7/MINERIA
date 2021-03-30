@@ -164,8 +164,73 @@ class DocBasedVSMSearcher(Searcher):
 
 
 class ProximitySearcher(Searcher):
-    # Your new code here (exercise 4*) #
-    pass
+    def __init__(self, index, parser=BasicParser()):
+        super().__init__(index, parser)
+
+    def search(self, query, cutoff):
+        qterms = self.parser.parse(query)
+        posiciones = {}
+        docids = set()
+        ranking = SearchRanking(cutoff)
+        ini = 1
+        flag = 0
+        # Guardamos los postings posicionales y los docids de los documentos con
+        # score distinto de 0
+        for term in qterms:
+
+            posiciones[term] = dict(self.index.positional_postings(term))
+            if ini :
+                docids = set(posiciones[term].keys())
+                ini = 0
+            else:
+                docids = docids.intersection(set(posiciones[term].keys()))
+
+
+        for id in docids:
+            score = 0
+            p = []
+            max_list = []
+            for j in range(len(qterms)):
+                p.append(0)
+                max_list.append(posiciones[qterms[j]][id][0])
+            b = max(max_list)
+
+            while b != -1:
+                i = 0
+                for j in range(len(qterms)):
+                    if(len(posiciones[qterms[j]][id]) <= (p[j] + 1)):
+                        if posiciones[qterms[j]][id][p[j]] < posiciones[qterms[i]][id][p[i]]:
+                            i = j
+                        continue
+
+                    while posiciones[qterms[j]][id][p[j]+1] <= b:
+                        p[j]+=1
+                        if(len(posiciones[qterms[j]][id]) <= (p[j]+1)):
+                            break
+
+                    if posiciones[qterms[j]][id][p[j]] < posiciones[qterms[i]][id][p[i]]:
+                        i = j
+
+                a = posiciones[qterms[i]][id][p[i]]
+                score = score + 1/(b-a-len(qterms)+2)
+                p[i] += 1
+                if(len(posiciones[qterms[i]][id]) <= p[i]):
+                    b = -1
+                else:
+                    b = posiciones[qterms[i]][id][p[i]]
+
+            ranking.push(self.index.doc_path(id), score)
+
+
+        return ranking
+
+
+
+
+
+
+
+
 
 
 class PagerankDocScorer():

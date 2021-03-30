@@ -13,7 +13,7 @@ import time
 from bmi.search.index import (
         RAMIndex, RAMIndexBuilder,
         DiskIndex, DiskIndexBuilder,
-        #PositionalIndex, PositionalIndexBuilder,
+        PositionalIndex, PositionalIndexBuilder,
     )
 from bmi.search.search import (
         SlowVSMSearcher,
@@ -32,10 +32,10 @@ def main():
     index_root_dir = "./index/"
     collections_root_dir = "./data/collections/"
     test_collection (collections_root_dir + "toy1/", index_root_dir + "toy1/", "cc", ["aa dd", "aa"], False)
-    #test_collection (collections_root_dir + "toy2/", index_root_dir + "toy2/", "aa", ["aa cc", "bb aa"], False)
-    #test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls/", "wikipedia", ["information probability", "probability information", "higher probability"], True)
-    #test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs1k/", "seat", ["obama family tree"], True)
-    #test_collection (collections_root_dir + "docs10k.zip", index_root_dir + "docs10k/", "seat", ["obama family tree"], True)
+    test_collection (collections_root_dir + "toy2/", index_root_dir + "toy2/", "aa", ["aa cc", "bb aa"], False)
+    test_collection (collections_root_dir + "urls.txt", index_root_dir + "urls/", "wikipedia", ["information probability", "probability information", "higher probability"], True)
+    test_collection (collections_root_dir + "docs1k.zip", index_root_dir + "docs1k/", "seat", ["obama family tree"], True)
+    test_collection (collections_root_dir + "docs10k.zip", index_root_dir + "docs10k/", "seat", ["obama family tree"], True)
     test_pagerank("./data/", 5)
 
 def test_collection(collection_path: str, index_path: str, word: str, queries: list, analyse_performance: bool):
@@ -44,21 +44,22 @@ def test_collection(collection_path: str, index_path: str, word: str, queries: l
 
     # We now test building different implementations of an index
     test_build(WhooshBuilder(index_path + "whoosh"), collection_path)
-    #test_build(WhooshForwardBuilder(index_path + "whoosh_fwd"), collection_path)
-    #test_build(WhooshPositionalBuilder(index_path + "whoosh_pos"), collection_path)
+    test_build(WhooshForwardBuilder(index_path + "whoosh_fwd"), collection_path)
+    test_build(WhooshPositionalBuilder(index_path + "whoosh_pos"), collection_path)
     test_build(RAMIndexBuilder(index_path + "ram"), collection_path)
-    #test_build(DiskIndexBuilder(index_path + "disk"), collection_path)
-    #test_build(PositionalIndexBuilder(index_path + "pos"), collection_path)
+    test_build(DiskIndexBuilder(index_path + "disk"), collection_path)
+    test_build(PositionalIndexBuilder(index_path + "pos"), collection_path)
 
     # We now inspect all the implementations
     indices = [
             WhooshIndex(index_path + "whoosh"),
-            #WhooshForwardIndex(index_path + "whoosh_fwd"),
-            #WhooshPositionalIndex(index_path + "whoosh_pos"),
+            WhooshForwardIndex(index_path + "whoosh_fwd"),
+            WhooshPositionalIndex(index_path + "whoosh_pos"),
             RAMIndex(index_path + "ram"),
-            #DiskIndex(index_path + "disk"),
-            #PositionalIndex(index_path + "pos"),
+            DiskIndex(index_path + "disk"),
+            PositionalIndex(index_path + "pos"),
             ]
+
     for index in indices:
         test_read(index, word)
 
@@ -67,15 +68,15 @@ def test_collection(collection_path: str, index_path: str, word: str, queries: l
         print("Checking search results for %s" % (query))
         # Whoosh searcher can only work with its own indices
         test_search(WhooshSearcher(index_path + "whoosh"), WhooshIndex(index_path + "whoosh"), query, 5)
-        #test_search(WhooshSearcher(index_path + "whoosh_fwd"), WhooshForwardIndex(index_path + "whoosh_fwd"), query, 5)
-        #test_search(WhooshSearcher(index_path + "whoosh_pos"), WhooshPositionalIndex(index_path + "whoosh_pos"), query, 5)
-        #test_search(ProximitySearcher(WhooshPositionalIndex(index_path + "whoosh_pos")), WhooshPositionalIndex(index_path + "whoosh_pos"), query, 5)
+        test_search(WhooshSearcher(index_path + "whoosh_fwd"), WhooshForwardIndex(index_path + "whoosh_fwd"), query, 5)
+        test_search(WhooshSearcher(index_path + "whoosh_pos"), WhooshPositionalIndex(index_path + "whoosh_pos"), query, 5)
+        test_search(ProximitySearcher(WhooshPositionalIndex(index_path + "whoosh_pos")), WhooshPositionalIndex(index_path + "whoosh_pos"), query, 5)
         for index in indices:
             # our searchers should work with any other index
             test_search(SlowVSMSearcher(index), index, query, 5)
             test_search(TermBasedVSMSearcher(index), index, query, 5)
             test_search(DocBasedVSMSearcher(index), index, query, 5)
-        #test_search(ProximitySearcher(PositionalIndex(index_path + "pos")), PositionalIndex(index_path + "pos"), query, 5)
+        test_search(ProximitySearcher(PositionalIndex(index_path + "pos")), PositionalIndex(index_path + "pos"), query, 5)
 
     # if we keep the list in memory, there may be problems with accessing the same index twice
     indices = list()

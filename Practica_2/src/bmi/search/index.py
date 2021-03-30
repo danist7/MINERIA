@@ -27,6 +27,7 @@ class Config(object):
     INDEX_FILE = "serialindex.dat"
     DICTIONARY_FILE = "dictionary.dat"
     POSTINGS_FILE = "postings.dat"
+    POSITIONAL_FILE = "positional.dat"
 
 
 class BasicParser:
@@ -184,35 +185,34 @@ class RAMIndex(Index):
         #self.docmap = []
         super().__init__(dir)
 
-
         self.diccionario = set()
         self.postingsdict = {}
-        if not dir :
+        if not dir:
             return
         # Abrimos el fichero de los paths
         p = os.path.join(dir, Config.PATHS_FILE)
-        file = open(p,'rb')
+        file = open(p, 'rb')
         self.docmap = pickle.load(file)
         file.close()
         # Abrimos el fichero del diccionario
         p = os.path.join(dir, Config.DICTIONARY_FILE)
-        file = open(p,'rb')
+        file = open(p, 'rb')
         self.diccionario = pickle.load(file)
         file.close()
         # Abrimos el fichero del postings
         p = os.path.join(dir, Config.POSTINGS_FILE)
-        file = open(p,'rb')
+        file = open(p, 'rb')
         self.postingsdict = pickle.load(file)
         file.close()
-
         super().save(dir)
 
     def postings(self, term):
         lista = self.postingsdict[term]
-        return list(zip(lista[0::2],lista[1::2]))
+        return list(zip(lista[0::2], lista[1::2]))
 
     def all_terms(self):
         return list(self.diccionario)
+
 
 class RAMIndexBuilder(Builder):
     def __init__(self, dir, parser=BasicParser()):
@@ -222,7 +222,6 @@ class RAMIndexBuilder(Builder):
         self.paths = []
         self.diccionario = set()
         self.postings = {}
-
 
     def index_document(self, path, text):
         # Guardamos el id y el path del documento
@@ -267,7 +266,7 @@ class RAMIndexBuilder(Builder):
         file = open(p, "wb")
         pickle.dump(self.diccionario, file)
         file.close()
-        # Guardamos en disco los postings
+          # Guardamos en disco los postings
         p = os.path.join(self.dir, Config.POSTINGS_FILE)
         if os.path.exists(p):
             os.remove(p)
@@ -277,25 +276,151 @@ class RAMIndexBuilder(Builder):
 
 
 class DiskIndex(Index):
-    # Your new code here (exercise 3*) #
-    pass
+    def __init__(self, dir=None):
+        #self.modulemap = {}
+        #self.docmap = []
+        super().__init__(dir)
+        self.dir = dir
+        self.diccionario = {}
+        if not dir:
+            return
+        # Abrimos el fichero de los paths
+        p = os.path.join(dir, Config.PATHS_FILE)
+        file = open(p, 'rb')
+        self.docmap = pickle.load(file)
+        file.close()
+        # Abrimos el fichero del diccionario
+        p = os.path.join(dir, Config.DICTIONARY_FILE)
+        file = open(p, 'rb')
+        self.diccionario = pickle.load(file)
+        file.close()
+        super().save(dir)
+
+    def postings(self, term):
+        p = os.path.join(self.dir, Config.POSTINGS_FILE)
+        file = open(p, 'r')
+        inicio = self.diccionario[term][0]
+        fin = self.diccionario[term][1]
+        file.seek(inicio)
+        postings = file.read(fin - inicio)
+        file.close()
+        lista = postings.split(" ")
+        lista = list(map(int, lista))
+        return list(zip(lista[0::2], lista[1::2]))
+
+    def all_terms(self):
+        return list(self.diccionario.keys())
 
 
 class DiskIndexBuilder(Builder):
-    # Your new code here (exercise 3*) #
-    pass
+
+    def __init__(self, dir, parser=BasicParser()):
+        super().__init__(dir, parser)
+        self.dir = dir
+        self.id = 0
+        self.paths = []
+        self.diccionario = set()
+        self.postings = {}
+
+    def index_document(self, path, text):
+        # Guardamos el id y el path del documento
+        self.paths.append(path)
+        # Para cada termino en el texto
+        for t in self.parser.parse(text):
+            # Aniadimos los terminos al diccionario
+            self.diccionario.add(t)
+            # Creamos los postings
+            # Si el termino esta en los postings
+            if t in self.postings:
+                # Si ya ha aparecido el termino en el documento
+                if self.postings[t][-2] == self.id:
+                    # Aniadimos uno al contador
+                    self.postings[t][-1] += 1
+                # Si no ha aparecido
+                else:
+                    # Aniadimos el posting y lo ponemos a 1
+                    self.postings[t].append(self.id)
+                    self.postings[t].append(1)
+            # Si el termino no esta en los postings
+            else:
+                # Creamos la lista de postings y guardamos el documento
+                self.postings[t] = []
+                self.postings[t].append(self.id)
+                self.postings[t].append(1)
+        # Aumentamos el id
+        self.id += 1
+
+    def commit(self):
+        indice = {}
+        # Guardamos en disco los paths
+        p = os.path.join(self.dir, Config.PATHS_FILE)
+        if os.path.exists(p):
+            os.remove(p)
+        file = open(p, "wb")
+        pickle.dump(self.paths, file)
+        file.close()
+
+        # Guardamos en disco los postings
+        p = os.path.join(self.dir, Config.POSTINGS_FILE)
+        if os.path.exists(p):
+            os.remove(p)
+        file = open(p, "w+")
+        puntero = 0
+        for t in self.postings:
+            for n in self.postings[t]:
+                file.write(str(n) + " ")
+            indice[t] = (puntero, file.tell()-1)
+            puntero = file.tell()
+
+        file.close()
+
+        p = os.path.join(self.dir, Config.DICTIONARY_FILE)
+        if os.path.exists(p):
+            os.remove(p)
+        file = open(p, "wb")
+        pickle.dump(indice, file)
+        file.close()
 
 
-class PositionalIndex(Index):
-    # Your new code here (exercise 5*) #
-    # Note that it may be better to inherit from a different class
-    # if your index extends a particular type of index
-    # For example: PositionalIndex(RAMIndex)
-    pass
+class PositionalIndex(RAMIndex):
+    def __init__(self, dir=None):
+        super().__init__(dir)
+        self.positional_postings_dic = {}
+        p = os.path.join(dir, Config.POSITIONAL_FILE)
+        file = open(p, 'rb')
+        self.positional_postings_dic = pickle.load(file)
+        file.close()
 
+    def positional_postings(self, term):
+        return list(self.positional_postings_dic[term].items())
 
-"""
-class PositionalIndexBuilder(IndexBuilder):
-    # Your new code here (exercise 5*) #
-    # Same note as for PositionalIndex
-    pass"""
+class PositionalIndexBuilder(RAMIndexBuilder):
+    def __init__(self, dir, parser=BasicParser()):
+        super().__init__(dir, parser)
+        self.positional_postings = {}
+
+    def index_document(self, path, text):
+        super().index_document(path,text)
+
+        pos = 0
+        for t in self.parser.parse(text):
+            if t in self.positional_postings:
+                if self.id-1 in self.positional_postings[t]:
+                    self.positional_postings[t][self.id-1].append(pos)
+                else:
+                    self.positional_postings[t][self.id-1] = []
+                    self.positional_postings[t][self.id-1].append(pos)
+            else:
+                self.positional_postings[t] = {}
+                self.positional_postings[t][self.id-1] = []
+                self.positional_postings[t][self.id-1].append(pos)
+            pos +=1
+
+    def commit(self):
+        super().commit()
+        p = os.path.join(self.dir, Config.POSITIONAL_FILE)
+        if os.path.exists(p):
+            os.remove(p)
+        file = open(p, "wb")
+        pickle.dump(self.positional_postings, file)
+        file.close()
