@@ -1,0 +1,148 @@
+=================================================================
+Testing indices and search on ./data/collections/toy1/
+----------------------------
+Testing index performance on ./data/collections/toy1/ document collection
+  Build time...
+34410496
+	WhooshIndex: 0.014042139053344727 seconds ---
+34443264
+	WhooshForwardIndex: 0.010063409805297852 seconds ---
+34443264
+	WhooshPositionalIndex: 0.009394645690917969 seconds ---
+34443264
+	RAMIndex: 0.003198862075805664 seconds ---
+34443264
+	DiskIndex: 0.00322723388671875 seconds ---
+34443264
+	PositionalIndex: 0.0031363964080810547 seconds ---
+  Load time...
+34443264
+	WhooshIndex: 0.0031082630157470703 seconds ---
+34443264
+	WhooshForwardIndex: 0.0031278133392333984 seconds ---
+34443264
+	WhooshPositionalIndex: 0.003097057342529297 seconds ---
+34443264
+	RAMIndex: 0.0030181407928466797 seconds ---
+34443264
+	DiskIndex: 0.004889011383056641 seconds ---
+34443264
+	PositionalIndex: 0.002978086471557617 seconds ---
+  Disk space...
+	WhooshIndex: 12735 space ---
+	WhooshForwardIndex: 13739 space ---
+	WhooshPositionalIndex: 13342 space ---
+	RAMIndex: 1514 space ---
+	DiskIndex: 1209 space ---
+	PositionalIndex: 2606 space ---
+=================================================================
+Testing indices and search on ./data/collections/toy2/
+----------------------------
+Testing index performance on ./data/collections/toy2/ document collection
+  Build time...
+34467840
+	WhooshIndex: 0.009232282638549805 seconds ---
+34545664
+	WhooshForwardIndex: 0.00969076156616211 seconds ---
+34549760
+	WhooshPositionalIndex: 0.009096145629882812 seconds ---
+34549760
+	RAMIndex: 0.0031919479370117188 seconds ---
+34549760
+	DiskIndex: 0.0034029483795166016 seconds ---
+34549760
+	PositionalIndex: 0.003279447555541992 seconds ---
+  Load time...
+34549760
+	WhooshIndex: 0.0033457279205322266 seconds ---
+34549760
+	WhooshForwardIndex: 0.0031538009643554688 seconds ---
+34549760
+	WhooshPositionalIndex: 0.0031528472900390625 seconds ---
+34549760
+	RAMIndex: 0.002969026565551758 seconds ---
+34549760
+	DiskIndex: 0.005014657974243164 seconds ---
+34549760
+	PositionalIndex: 0.0030088424682617188 seconds ---
+  Disk space...
+	WhooshIndex: 12101 space ---
+	WhooshForwardIndex: 12860 space ---
+	WhooshPositionalIndex: 12646 space ---
+	RAMIndex: 1409 space ---
+	DiskIndex: 1107 space ---
+	PositionalIndex: 2459 space ---
+=================================================================
+Testing indices and search on ./data/collections/docs1k.zip
+----------------------------
+Testing index performance on ./data/collections/docs1k.zip document collection
+  Build time...
+196288512
+	WhooshIndex: 45.18519353866577 seconds ---
+220831744
+	WhooshForwardIndex: 49.22666072845459 seconds ---
+224858112
+	WhooshPositionalIndex: 47.36752009391785 seconds ---
+112168960
+	RAMIndex: 30.86502718925476 seconds ---
+117936128
+	DiskIndex: 31.775152683258057 seconds ---
+355545088
+	PositionalIndex: 36.54405474662781 seconds ---
+  Load time...
+166596608
+	WhooshIndex: 0.011116504669189453 seconds ---
+166604800
+	WhooshForwardIndex: 0.009026765823364258 seconds ---
+175247360
+	WhooshPositionalIndex: 0.010402679443359375 seconds ---
+160718848
+	RAMIndex: 0.6334600448608398 seconds ---
+145047552
+	DiskIndex: 4.75730299949646 seconds ---
+345362432
+	PositionalIndex: 1.306413173675537 seconds ---
+  Disk space...
+	WhooshIndex: 22841235 space ---
+	WhooshForwardIndex: 28601480 space ---
+	WhooshPositionalIndex: 31287605 space ---
+	RAMIndex: 5930728 space ---
+	DiskIndex: 6397209 space ---
+	PositionalIndex: 17770827 space ---
+=================================================================
+Testing indices and search on ./data/collections/docs10k.zip
+----------------------------
+Testing index performance on ./data/collections/docs10k.zip document collection
+  Build time...
+1224585216
+	WhooshIndex: 310.3747112751007 seconds ---
+1224314880
+	WhooshForwardIndex: 337.7717077732086 seconds ---
+1255317504
+	WhooshPositionalIndex: 323.75601148605347 seconds ---
+289918976
+	RAMIndex: 243.01597809791565 seconds ---
+316342272
+	DiskIndex: 247.81489062309265 seconds ---
+1866969088
+	PositionalIndex: 262.4168107509613 seconds ---
+  Load time...
+587079680
+	WhooshIndex: 0.042253971099853516 seconds ---
+587223040
+	WhooshForwardIndex: 0.04112672805786133 seconds ---
+713265152
+	WhooshPositionalIndex: 0.07052755355834961 seconds ---
+661147648
+	RAMIndex: 4.073735475540161 seconds ---
+474718208
+	DiskIndex: 17.918161392211914 seconds ---
+1891467264
+	PositionalIndex: 8.892131090164185 seconds ---
+  Disk space...
+	WhooshIndex: 95728208 space ---
+	WhooshForwardIndex: 141085865 space ---
+	WhooshPositionalIndex: 158675051 space ---
+	RAMIndex: 35520125 space ---
+	DiskIndex: 43950957 space ---
+	PositionalIndex: 114085747 space ---

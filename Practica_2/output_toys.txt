@@ -1,0 +1,935 @@
+=================================================================
+Testing indices and search on ./data/collections/toy1/
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.006685018539428711 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.00644230842590332 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.005802154541015625 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.0003554821014404297 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.00048041343688964844 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.0003790855407714844 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 4
+Vocabulary size: 39
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3.0 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.0003082752227783203 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 4
+Vocabulary size: 39
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3.0 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.0002925395965576172 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 4
+Vocabulary size: 39
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3.0 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.0002579689025878906 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 4
+Vocabulary size: 57
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 1.5974044799804688e-05 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 4
+Vocabulary size: 57
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.00012564659118652344 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 4
+Vocabulary size: 57
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 1.3113021850585938e-05 seconds )
+
+------------------------------
+Checking search results for aa dd
+  WhooshSearcher with index WhooshIndex for query 'aa dd'
+
+Done ( 0.0019426345825195312 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'aa dd'
+
+Done ( 0.00037670135498046875 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'aa dd'
+
+Done ( 0.0003769397735595703 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'aa dd'
+
+Done ( 0.00020003318786621094 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0005400180816650391 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00016689300537109375 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00017571449279785156 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0004150867462158203 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001747608184814453 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00017571449279785156 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0004973411560058594 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00016188621520996094 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001671314239501953 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 4.482269287109375e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.193450927734375e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.4557113647460938e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0003650188446044922 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00011539459228515625 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00012111663818359375 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 4.4345855712890625e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.1457672119140625e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.4080276489257812e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'aa dd'
+
+Done ( 4.220008850097656e-05 seconds )
+
+------------------------------
+Checking search results for aa
+  WhooshSearcher with index WhooshIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0009648799896240234 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0008840560913085938 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0008804798126220703 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'aa'
+8.0 	 ./data/collections/toy1/d1.txt
+1.0 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00018453598022460938 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00028324127197265625 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.751319885253906e-05 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.775161743164062e-05 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0002105236053466797 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00010013580322265625 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00010013580322265625 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0002484321594238281 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.274482727050781e-05 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.465217590332031e-05 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.7418136596679688e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.5735626220703125e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.6927719116210938e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00018906593322753906 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 7.033348083496094e-05 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 7.390975952148438e-05 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.3603439331054688e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.4066696166992188e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.5497207641601562e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'aa'
+8.0 	 ./data/collections/toy1/d1.txt
+1.0 	 ./data/collections/toy1/d3.txt
+
+Done ( 3.170967102050781e-05 seconds )
+
+----------------------------
+Testing index performance on ./data/collections/toy1/ document collection
+  Build time...
+	WhooshIndex: 0.006371259689331055 seconds ---
+	WhooshForwardIndex: 0.007249116897583008 seconds ---
+	WhooshPositionalIndex: 0.0064084529876708984 seconds ---
+	RAMIndex: 0.0003638267517089844 seconds ---
+	DiskIndex: 0.0005762577056884766 seconds ---
+  Load time...
+	WhooshIndex: 0.000392913818359375 seconds ---
+	WhooshForwardIndex: 0.0003757476806640625 seconds ---
+	WhooshPositionalIndex: 0.00037288665771484375 seconds ---
+	RAMIndex: 0.00022029876708984375 seconds ---
+	DiskIndex: 0.002027273178100586 seconds ---
+  Disk space...
+	WhooshIndex: 12736 space ---
+	WhooshForwardIndex: 13740 space ---
+	WhooshPositionalIndex: 13342 space ---
+	RAMIndex: 1514 space ---
+	DiskIndex: 1209 space ---
+----------------------------
+Testing search performance on ./data/collections/toy1/ document collection with query: 'aa dd'
+  WhooshSearcher with index WhooshIndex for query 'aa dd'
+
+Done ( 0.0003745555877685547 seconds )
+
+--- Whoosh on Whoosh 0.0009198188781738281 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0005199909210205078 seconds )
+
+--- SlowVSM on Whoosh 0.0005242824554443359 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00015664100646972656 seconds )
+
+--- TermVSM on Whoosh 0.00016045570373535156 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.5272369384765625e-05 seconds )
+
+--- TermVSM on RAM 3.0040740966796875e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00013875961303710938 seconds )
+
+--- TermVSM on Disk 0.0001423358917236328 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001201629638671875 seconds )
+
+--- DocVSM on Disk 0.00012373924255371094 seconds ---
+----------------------------
+Testing search performance on ./data/collections/toy1/ document collection with query: 'aa'
+  WhooshSearcher with index WhooshIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0008590221405029297 seconds )
+
+--- Whoosh on Whoosh 0.0014338493347167969 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0003116130828857422 seconds )
+
+--- SlowVSM on Whoosh 0.00031566619873046875 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00011992454528808594 seconds )
+
+--- TermVSM on Whoosh 0.00012373924255371094 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.2172927856445312e-05 seconds )
+
+--- TermVSM on RAM 2.6941299438476562e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.393692016601562e-05 seconds )
+
+--- TermVSM on Disk 9.775161743164062e-05 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 8.0108642578125e-05 seconds )
+
+--- DocVSM on Disk 8.440017700195312e-05 seconds ---
+=================================================================
+Testing indices and search on ./data/collections/toy2/
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.005680084228515625 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0058441162109375 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.005513906478881836 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0002243518829345703 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0004296302795410156 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0003077983856201172 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 2
+Vocabulary size: 38
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5.0 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.0002834796905517578 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 2
+Vocabulary size: 38
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5.0 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.0002841949462890625 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 2
+Vocabulary size: 38
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5.0 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.0002472400665283203 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 2
+Vocabulary size: 56
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 1.4543533325195312e-05 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 2
+Vocabulary size: 56
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.00011944770812988281 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 2
+Vocabulary size: 56
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 1.2874603271484375e-05 seconds )
+
+------------------------------
+Checking search results for aa cc
+  WhooshSearcher with index WhooshIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0008463859558105469 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007224082946777344 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.000743865966796875 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'aa cc'
+3.333333333333333 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0001850128173828125 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002911090850830078 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016355514526367188 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016736984252929688 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002498626708984375 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016736984252929688 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001678466796875 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00026035308837890625 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015616416931152344 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016045570373535156 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 3.075599670410156e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.09808349609375e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.3603439331054688e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00020575523376464844 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011658668518066406 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001220703125 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 4.982948303222656e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.2649765014648438e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.4080276489257812e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'aa cc'
+3.333333333333333 	 ./data/collections/toy2/example.txt
+
+Done ( 3.170967102050781e-05 seconds )
+
+------------------------------
+Checking search results for bb aa
+  WhooshSearcher with index WhooshIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007355213165283203 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007135868072509766 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007526874542236328 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'bb aa'
+2.5 	 ./data/collections/toy2/example.txt
+
+Done ( 0.00018095970153808594 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002772808074951172 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001499652862548828 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015473365783691406 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002315044403076172 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015616416931152344 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015497207641601562 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002422332763671875 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001437664031982422 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001480579376220703 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.765655517578125e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.9311904907226562e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.1219253540039062e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00018787384033203125 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00010728836059570312 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011873245239257812 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.3603439331054688e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.7642974853515625e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.9311904907226562e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'bb aa'
+2.5 	 ./data/collections/toy2/example.txt
+
+Done ( 3.0040740966796875e-05 seconds )
+
+----------------------------
+Testing index performance on ./data/collections/toy2/ document collection
+  Build time...
+	WhooshIndex: 0.0058825016021728516 seconds ---
+	WhooshForwardIndex: 0.006499528884887695 seconds ---
+	WhooshPositionalIndex: 0.005972146987915039 seconds ---
+	RAMIndex: 0.00032138824462890625 seconds ---
+	DiskIndex: 0.0005230903625488281 seconds ---
+  Load time...
+	WhooshIndex: 0.0003933906555175781 seconds ---
+	WhooshForwardIndex: 0.0003752708435058594 seconds ---
+	WhooshPositionalIndex: 0.0003712177276611328 seconds ---
+	RAMIndex: 0.000217437744140625 seconds ---
+	DiskIndex: 0.001974344253540039 seconds ---
+  Disk space...
+	WhooshIndex: 12102 space ---
+	WhooshForwardIndex: 12858 space ---
+	WhooshPositionalIndex: 12647 space ---
+	RAMIndex: 1409 space ---
+	DiskIndex: 1107 space ---
+----------------------------
+Testing search performance on ./data/collections/toy2/ document collection with query: 'aa cc'
+  WhooshSearcher with index WhooshIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007276535034179688 seconds )
+
+--- Whoosh on Whoosh 0.0012633800506591797 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0003056526184082031 seconds )
+
+--- SlowVSM on Whoosh 0.00030994415283203125 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001518726348876953 seconds )
+
+--- TermVSM on Whoosh 0.0001556873321533203 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.4318695068359375e-05 seconds )
+
+--- TermVSM on RAM 2.86102294921875e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00013256072998046875 seconds )
+
+--- TermVSM on Disk 0.00013566017150878906 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011324882507324219 seconds )
+
+--- DocVSM on Disk 0.00011658668518066406 seconds ---
+----------------------------
+Testing search performance on ./data/collections/toy2/ document collection with query: 'bb aa'
+  WhooshSearcher with index WhooshIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007426738739013672 seconds )
+
+--- Whoosh on Whoosh 0.001300811767578125 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0003082752227783203 seconds )
+
+--- SlowVSM on Whoosh 0.0003123283386230469 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.000156402587890625 seconds )
+
+--- TermVSM on Whoosh 0.00016045570373535156 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.4557113647460938e-05 seconds )
+
+--- TermVSM on RAM 2.9087066650390625e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00013256072998046875 seconds )
+
+--- TermVSM on Disk 0.0001361370086669922 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011754035949707031 seconds )
+
+--- DocVSM on Disk 0.00012135505676269531 seconds ---

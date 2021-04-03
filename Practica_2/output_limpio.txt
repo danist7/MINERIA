@@ -1,0 +1,2218 @@
+=================================================================
+Testing indices and search on ./data/collections/toy1/
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.0074999332427978516 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.006566047668457031 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.005926609039306641 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.00037384033203125 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.0004990100860595703 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/toy1/
+Done ( 0.00038552284240722656 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 4
+Vocabulary size: 39
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3.0 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.0003070831298828125 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 4
+Vocabulary size: 39
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3.0 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.0002987384796142578 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 4
+Vocabulary size: 39
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3.0 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.0002639293670654297 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 4
+Vocabulary size: 57
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 1.5735626220703125e-05 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 4
+Vocabulary size: 57
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 0.000125885009765625 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 4
+Vocabulary size: 57
+  Frequency of word "cc" in document 0 - ./data/collections/toy1/d4.txt: 0
+  Total frequency of word "cc" in the collection: 3 occurrences over 2 documents
+  Docs containing the word 'cc': 2
+    First two documents: [(1, 2), (3, 1)]
+Done ( 1.2874603271484375e-05 seconds )
+
+------------------------------
+Checking search results for aa dd
+  WhooshSearcher with index WhooshIndex for query 'aa dd'
+
+Done ( 0.001993894577026367 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'aa dd'
+
+Done ( 0.00037789344787597656 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'aa dd'
+
+Done ( 0.00037360191345214844 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'aa dd'
+
+Done ( 0.000152587890625 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0005280971527099609 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001633167266845703 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001659393310546875 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0004076957702636719 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00016927719116210938 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001647472381591797 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00049591064453125 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00015497207641601562 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00015974044799804688 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 3.9577484130859375e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.9550323486328125e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.193450927734375e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0003414154052734375 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.000110626220703125 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00011515617370605469 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 3.552436828613281e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.8358230590820312e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'aa dd'
+1.0 	 ./data/collections/toy1/d2.txt
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.0742416381835938e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'aa dd'
+
+Done ( 4.601478576660156e-05 seconds )
+
+------------------------------
+Checking search results for aa
+  WhooshSearcher with index WhooshIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0009860992431640625 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0009355545043945312 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'aa'
+2.4757064692351958 	 ./data/collections/toy1/d1.txt
+1.9101843771913276 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0008831024169921875 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'aa'
+8.0 	 ./data/collections/toy1/d1.txt
+1.0 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0001404285430908203 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0002918243408203125 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00010085105895996094 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00010848045349121094 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00021791458129882812 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00010228157043457031 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00010204315185546875 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.0002579689025878906 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.679794311523438e-05 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 9.894371032714844e-05 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.6226043701171875e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.52587890625e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.6927719116210938e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 0.00019121170043945312 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 7.271766662597656e-05 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 7.486343383789062e-05 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 2.384185791015625e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.4543533325195312e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'aa'
+0.7427813527082074 	 ./data/collections/toy1/d1.txt
+0.5773502691896258 	 ./data/collections/toy1/d3.txt
+
+Done ( 1.5497207641601562e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'aa'
+8.0 	 ./data/collections/toy1/d1.txt
+1.0 	 ./data/collections/toy1/d3.txt
+
+Done ( 3.2901763916015625e-05 seconds )
+
+=================================================================
+Testing indices and search on ./data/collections/toy2/
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.005892276763916016 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.005986452102661133 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.005820274353027344 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0002377033233642578 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0004494190216064453 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/toy2/
+Done ( 0.0003268718719482422 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 2
+Vocabulary size: 38
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5.0 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.0002884864807128906 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 2
+Vocabulary size: 38
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5.0 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.00028705596923828125 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 2
+Vocabulary size: 38
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5.0 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.0002562999725341797 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 2
+Vocabulary size: 56
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 1.5497207641601562e-05 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 2
+Vocabulary size: 56
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 0.00012135505676269531 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 2
+Vocabulary size: 56
+  Frequency of word "aa" in document 0 - ./data/collections/toy2/hamlet.txt: 1
+  Total frequency of word "aa" in the collection: 5 occurrences over 2 documents
+  Docs containing the word 'aa': 2
+    First two documents: [(0, 1), (1, 4)]
+Done ( 1.2636184692382812e-05 seconds )
+
+------------------------------
+Checking search results for aa cc
+  WhooshSearcher with index WhooshIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007822513580322266 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007290840148925781 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'aa cc'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007295608520507812 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'aa cc'
+3.333333333333333 	 ./data/collections/toy2/example.txt
+
+Done ( 0.00019049644470214844 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002834796905517578 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015926361083984375 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001628398895263672 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00024628639221191406 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016379356384277344 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016236305236816406 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00026035308837890625 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.000152587890625 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015854835510253906 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.8371810913085938e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.9073486328125e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.0742416381835938e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001926422119140625 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011038780212402344 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011754035949707031 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.5510787963867188e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.7881393432617188e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'aa cc'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.002716064453125e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'aa cc'
+3.333333333333333 	 ./data/collections/toy2/example.txt
+
+Done ( 3.266334533691406e-05 seconds )
+
+------------------------------
+Checking search results for bb aa
+  WhooshSearcher with index WhooshIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007417201995849609 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007274150848388672 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'bb aa'
+2.9361992914246073 	 ./data/collections/toy2/example.txt
+
+Done ( 0.0007271766662597656 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'bb aa'
+2.5 	 ./data/collections/toy2/example.txt
+
+Done ( 0.00018644332885742188 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002789497375488281 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00015354156494140625 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001575946807861328 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002498626708984375 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016498565673828125 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00016236305236816406 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0002570152282714844 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001513957977294922 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.036794545335038994 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.0001556873321533203 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.7418136596679688e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.9073486328125e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.0742416381835938e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00021719932556152344 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011587142944335938 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 0.00011587142944335938 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.5033950805664062e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 1.8596649169921875e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'bb aa'
+0.902184145803128 	 ./data/collections/toy2/example.txt
+0.02556544296910982 	 ./data/collections/toy2/hamlet.txt
+
+Done ( 2.0503997802734375e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'bb aa'
+2.5 	 ./data/collections/toy2/example.txt
+
+Done ( 2.9802322387695312e-05 seconds )
+
+=================================================================
+Testing indices and search on ./data/collections/urls.txt
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/urls.txt
+Done ( 2.9129059314727783 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/urls.txt
+Done ( 2.9538307189941406 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/urls.txt
+Done ( 2.8279178142547607 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/urls.txt
+Done ( 2.0907156467437744 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/urls.txt
+Done ( 2.321038246154785 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/urls.txt
+Done ( 2.316321611404419 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 3
+Vocabulary size: 5907
+  Frequency of word "wikipedia" in document 0 - https://en.wikipedia.org/wiki/Simpson's_paradox: 5
+  Total frequency of word "wikipedia" in the collection: 21.0 occurrences over 3 documents
+  Docs containing the word 'wikipedia': 3
+    First two documents: [(0, 5), (1, 11)]
+Done ( 0.012601375579833984 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 3
+Vocabulary size: 5907
+  Frequency of word "wikipedia" in document 0 - https://en.wikipedia.org/wiki/Simpson's_paradox: 5
+  Total frequency of word "wikipedia" in the collection: 21.0 occurrences over 3 documents
+  Docs containing the word 'wikipedia': 3
+    First two documents: [(0, 5), (1, 11)]
+Done ( 0.01191258430480957 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 3
+Vocabulary size: 5907
+  Frequency of word "wikipedia" in document 0 - https://en.wikipedia.org/wiki/Simpson's_paradox: 5
+  Total frequency of word "wikipedia" in the collection: 21.0 occurrences over 3 documents
+  Docs containing the word 'wikipedia': 3
+    First two documents: [(0, 5), (1, 11)]
+Done ( 0.010998964309692383 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 3
+Vocabulary size: 5835
+  Frequency of word "wikipedia" in document 0 - https://en.wikipedia.org/wiki/Simpson's_paradox: 6
+  Total frequency of word "wikipedia" in the collection: 24 occurrences over 3 documents
+  Docs containing the word 'wikipedia': 3
+    First two documents: [(0, 6), (1, 12)]
+Done ( 0.0001537799835205078 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 3
+Vocabulary size: 5835
+  Frequency of word "wikipedia" in document 0 - https://en.wikipedia.org/wiki/Simpson's_paradox: 6
+  Total frequency of word "wikipedia" in the collection: 24 occurrences over 3 documents
+  Docs containing the word 'wikipedia': 3
+    First two documents: [(0, 6), (1, 12)]
+Done ( 0.0003070831298828125 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 3
+Vocabulary size: 5835
+  Frequency of word "wikipedia" in document 0 - https://en.wikipedia.org/wiki/Simpson's_paradox: 6
+  Total frequency of word "wikipedia" in the collection: 24 occurrences over 3 documents
+  Docs containing the word 'wikipedia': 3
+    First two documents: [(0, 6), (1, 12)]
+Done ( 0.00017786026000976562 seconds )
+
+------------------------------
+Checking search results for information probability
+  WhooshSearcher with index WhooshIndex for query 'information probability'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0021352767944335938 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'information probability'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.001983165740966797 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'information probability'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0020644664764404297 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'information probability'
+0.14980083129175972 	 https://en.wikipedia.org/wiki/Entropy
+0.01802763446599063 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.003265688406053696 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00026726722717285156 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0004146099090576172 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001895427703857422 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00019931793212890625 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0012238025665283203 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020432472229003906 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00021314620971679688 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00046944618225097656 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00028586387634277344 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00034117698669433594 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.814697265625e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.5033950805664062e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.7894973754882812e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'information probability'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002841949462890625 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'information probability'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001723766326904297 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'information probability'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00018215179443359375 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.3855438232421875e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.3603439331054688e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.8133392333984375e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'information probability'
+0.08820334937793184 	 https://en.wikipedia.org/wiki/Entropy
+0.012959094074545069 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.0022849856494193124 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00011324882507324219 seconds )
+
+------------------------------
+Checking search results for probability information
+  WhooshSearcher with index WhooshIndex for query 'probability information'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0025482177734375 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'probability information'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.002391815185546875 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'probability information'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0023660659790039062 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'probability information'
+0.14980083129175972 	 https://en.wikipedia.org/wiki/Entropy
+0.01802763446599063 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.003265688406053696 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00028705596923828125 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0004596710205078125 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020456314086914062 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002219676971435547 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0013229846954345703 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002288818359375 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020503997802734375 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0004057884216308594 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00019621849060058594 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020456314086914062 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 8.440017700195312e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.7894973754882812e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.8133392333984375e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'probability information'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0003097057342529297 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'probability information'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00017309188842773438 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'probability information'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00018262863159179688 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.3855438232421875e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.3603439331054688e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.765655517578125e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'probability information'
+0.08820334937793184 	 https://en.wikipedia.org/wiki/Entropy
+0.012959094074545069 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.0022849856494193124 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 9.465217590332031e-05 seconds )
+
+------------------------------
+Checking search results for higher probability
+  WhooshSearcher with index WhooshIndex for query 'higher probability'
+2.8763808317605144 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.5094985012013873 	 https://en.wikipedia.org/wiki/Entropy
+1.7113299614955895 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.002081632614135742 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'higher probability'
+2.8763808317605144 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.5094985012013873 	 https://en.wikipedia.org/wiki/Entropy
+1.7113299614955895 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0019202232360839844 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'higher probability'
+2.8763808317605144 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.5094985012013873 	 https://en.wikipedia.org/wiki/Entropy
+1.7113299614955895 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0020294189453125 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'higher probability'
+1.0837824331635524 	 https://en.wikipedia.org/wiki/Entropy
+0.054250434125033116 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.001643441210943925 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002465248107910156 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00041556358337402344 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001914501190185547 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020575523376464844 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0011816024780273438 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.000209808349609375 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002079010009765625 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0003895759582519531 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001914501190185547 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020051002502441406 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.62396240234375e-05 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.5510787963867188e-05 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.7418136596679688e-05 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'higher probability'
+0.027748999986033376 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528601 	 https://en.wikipedia.org/wiki/Entropy
+0.0057193092686743845 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002944469451904297 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'higher probability'
+0.027748999986033376 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528601 	 https://en.wikipedia.org/wiki/Entropy
+0.0057193092686743845 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00021576881408691406 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'higher probability'
+0.027748999986033376 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528601 	 https://en.wikipedia.org/wiki/Entropy
+0.0057193092686743845 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00018477439880371094 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.314018249511719e-05 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.3603439331054688e-05 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 2.8371810913085938e-05 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'higher probability'
+1.042083674460651 	 https://en.wikipedia.org/wiki/Entropy
+0.03714053586209685 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.0011632730953684805 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 8.416175842285156e-05 seconds )
+
+----------------------------
+Testing index performance on ./data/collections/urls.txt document collection
+  Build time...
+	WhooshIndex: 2.686237096786499 seconds ---
+	WhooshForwardIndex: 3.038869619369507 seconds ---
+	WhooshPositionalIndex: 2.5819990634918213 seconds ---
+	RAMIndex: 2.3408443927764893 seconds ---
+	DiskIndex: 2.2646231651306152 seconds ---
+  Load time...
+	WhooshIndex: 0.0008928775787353516 seconds ---
+	WhooshForwardIndex: 0.0006816387176513672 seconds ---
+	WhooshPositionalIndex: 0.0006756782531738281 seconds ---
+	RAMIndex: 0.014991283416748047 seconds ---
+	DiskIndex: 0.20118474960327148 seconds ---
+  Disk space...
+	WhooshIndex: 1062397 space ---
+	WhooshForwardIndex: 1137047 space ---
+	WhooshPositionalIndex: 1214865 space ---
+	RAMIndex: 173137 space ---
+	DiskIndex: 137345 space ---
+----------------------------
+Testing search performance on ./data/collections/urls.txt document collection with query: 'information probability'
+  WhooshSearcher with index WhooshIndex for query 'information probability'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0020864009857177734 seconds )
+
+--- Whoosh on Whoosh 0.002976655960083008 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00044536590576171875 seconds )
+
+--- SlowVSM on Whoosh 0.00045299530029296875 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'information probability'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00018978118896484375 seconds )
+
+--- TermVSM on Whoosh 0.000194549560546875 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'information probability'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.218650817871094e-05 seconds )
+
+--- TermVSM on RAM 3.790855407714844e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'information probability'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00021338462829589844 seconds )
+
+--- TermVSM on Disk 0.00021791458129882812 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'information probability'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001876354217529297 seconds )
+
+--- DocVSM on Disk 0.00019216537475585938 seconds ---
+----------------------------
+Testing search performance on ./data/collections/urls.txt document collection with query: 'probability information'
+  WhooshSearcher with index WhooshIndex for query 'probability information'
+2.902649618132247 	 https://en.wikipedia.org/wiki/Entropy
+2.4482862048395297 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.087005162060408 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0021431446075439453 seconds )
+
+--- Whoosh on Whoosh 0.002854585647583008 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0004417896270751953 seconds )
+
+--- SlowVSM on Whoosh 0.00044727325439453125 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'probability information'
+0.019554433512953162 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01717335117453794 	 https://en.wikipedia.org/wiki/Entropy
+0.009605227551695949 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001938343048095703 seconds )
+
+--- TermVSM on Whoosh 0.0001983642578125 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'probability information'
+0.01946880410193706 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033561 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963169 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 3.0279159545898438e-05 seconds )
+
+--- TermVSM on RAM 3.5762786865234375e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'probability information'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00020694732666015625 seconds )
+
+--- TermVSM on Disk 0.00021028518676757812 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'probability information'
+0.01946880410193704 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01706380262033551 	 https://en.wikipedia.org/wiki/Entropy
+0.009572165846963052 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0001862049102783203 seconds )
+
+--- DocVSM on Disk 0.00019025802612304688 seconds ---
+----------------------------
+Testing search performance on ./data/collections/urls.txt document collection with query: 'higher probability'
+  WhooshSearcher with index WhooshIndex for query 'higher probability'
+2.8763808317605144 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+2.5094985012013873 	 https://en.wikipedia.org/wiki/Entropy
+1.7113299614955895 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0017690658569335938 seconds )
+
+--- Whoosh on Whoosh 0.0024688243865966797 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00044846534729003906 seconds )
+
+--- SlowVSM on Whoosh 0.00045418739318847656 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'higher probability'
+0.02787104808475835 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.011921504617654588 	 https://en.wikipedia.org/wiki/Entropy
+0.0057390634306206095 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00022840499877929688 seconds )
+
+--- TermVSM on Whoosh 0.0002334117889404297 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'higher probability'
+0.027748999986033404 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528608 	 https://en.wikipedia.org/wiki/Entropy
+0.005719309268674455 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 4.482269287109375e-05 seconds )
+
+--- TermVSM on RAM 5.173683166503906e-05 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'higher probability'
+0.027748999986033376 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528601 	 https://en.wikipedia.org/wiki/Entropy
+0.0057193092686743845 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.0002987384796142578 seconds )
+
+--- TermVSM on Disk 0.00030303001403808594 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'higher probability'
+0.027748999986033376 	 https://en.wikipedia.org/wiki/Simpson's_paradox
+0.01184545751528601 	 https://en.wikipedia.org/wiki/Entropy
+0.0057193092686743845 	 https://en.wikipedia.org/wiki/Bias
+
+Done ( 0.00019121170043945312 seconds )
+
+--- DocVSM on Disk 0.00019621849060058594 seconds ---
+=================================================================
+Testing indices and search on ./data/collections/docs1k.zip
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/docs1k.zip
+Done ( 45.92744970321655 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/docs1k.zip
+Done ( 49.92180252075195 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/docs1k.zip
+Done ( 47.97447896003723 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/docs1k.zip
+Done ( 31.55490779876709 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/docs1k.zip
+Done ( 32.46392631530762 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/docs1k.zip
+Done ( 37.07893943786621 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 1000
+Vocabulary size: 118012
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-07-2998.html: 0
+  Total frequency of word "seat" in the collection: 1392.0 occurrences over 119 documents
+  Docs containing the word 'seat': 119
+    First two documents: [(1, 3), (6, 5)]
+Done ( 0.21999645233154297 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 1000
+Vocabulary size: 118012
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-07-2998.html: 0
+  Total frequency of word "seat" in the collection: 1392.0 occurrences over 119 documents
+  Docs containing the word 'seat': 119
+    First two documents: [(1, 3), (6, 5)]
+Done ( 0.21884393692016602 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 1000
+Vocabulary size: 118012
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-07-2998.html: 0
+  Total frequency of word "seat" in the collection: 1392.0 occurrences over 119 documents
+  Docs containing the word 'seat': 119
+    First two documents: [(1, 3), (6, 5)]
+Done ( 0.21502327919006348 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 1000
+Vocabulary size: 111596
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-07-2998.html: 0
+  Total frequency of word "seat" in the collection: 1406 occurrences over 119 documents
+  Docs containing the word 'seat': 119
+    First two documents: [(1, 3), (6, 5)]
+Done ( 0.0030379295349121094 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 1000
+Vocabulary size: 111596
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-07-2998.html: 0
+  Total frequency of word "seat" in the collection: 1406 occurrences over 119 documents
+  Docs containing the word 'seat': 119
+    First two documents: [(1, 3), (6, 5)]
+Done ( 0.003106832504272461 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 1000
+Vocabulary size: 111596
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-07-2998.html: 0
+  Total frequency of word "seat" in the collection: 1406 occurrences over 119 documents
+  Docs containing the word 'seat': 119
+    First two documents: [(1, 3), (6, 5)]
+Done ( 0.0022077560424804688 seconds )
+
+------------------------------
+Checking search results for obama family tree
+  WhooshSearcher with index WhooshIndex for query 'obama family tree'
+16.771599035138742 	 best_doc.html
+16.45981358926495 	 clueweb09-en0010-79-2218.html
+15.862214516253687 	 clueweb09-en0010-57-32937.html
+15.783482115979092 	 clueweb09-en0001-02-21241.html
+15.586230698160584 	 clueweb09-en0008-45-29117.html
+
+Done ( 0.026784181594848633 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'obama family tree'
+16.771599035138742 	 best_doc.html
+16.45981358926495 	 clueweb09-en0010-79-2218.html
+15.862214516253687 	 clueweb09-en0010-57-32937.html
+15.783482115979092 	 clueweb09-en0001-02-21241.html
+15.586230698160584 	 clueweb09-en0008-45-29117.html
+
+Done ( 0.026912212371826172 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'obama family tree'
+16.771599035138742 	 best_doc.html
+16.45981358926495 	 clueweb09-en0010-79-2218.html
+15.862214516253687 	 clueweb09-en0010-57-32937.html
+15.783482115979092 	 clueweb09-en0001-02-21241.html
+15.586230698160584 	 clueweb09-en0008-45-29117.html
+
+Done ( 0.03659820556640625 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'obama family tree'
+28.316629017198274 	 clueweb09-en0010-79-2218.html
+10.637796568069568 	 clueweb09-enwp00-09-18461.html
+10.637262171190622 	 clueweb09-enwp03-16-16773.html
+10.637262171190622 	 clueweb09-enwp01-49-16274.html
+10.637262171190622 	 clueweb09-enwp01-17-9993.html
+
+Done ( 0.030440807342529297 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.9302332401275635 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.00946187973022461 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.011250019073486328 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.3996875286102295 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.009476900100708008 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.011328458786010742 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 1.9385380744934082 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.010748147964477539 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.01260828971862793 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.07016110420227051 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.008890390396118164 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258968 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.00950312614440918 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478205 	 clueweb09-en0010-79-2218.html
+0.22938026506258977 	 clueweb09-en0001-02-21241.html
+0.2233151778104017 	 clueweb09-en0009-30-2768.html
+0.22327490172934916 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.45328354835510254 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478205 	 clueweb09-en0010-79-2218.html
+0.22938026506258977 	 clueweb09-en0001-02-21241.html
+0.2233151778104017 	 clueweb09-en0009-30-2768.html
+0.22327490172934916 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.06668281555175781 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478205 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.2233151778104017 	 clueweb09-en0009-30-2768.html
+0.22327490172934916 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.0704488754272461 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.07048296928405762 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.009090185165405273 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258968 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.010012626647949219 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'obama family tree'
+28.099924611171208 	 clueweb09-en0010-79-2218.html
+8.74857579843319 	 clueweb09-enwp00-39-9864.html
+8.74857579843319 	 clueweb09-enwp00-26-5310.html
+8.74857579843319 	 clueweb09-enwp00-09-18461.html
+8.74857579843319 	 clueweb09-enwp00-04-9625.html
+
+Done ( 0.010101795196533203 seconds )
+
+----------------------------
+Testing index performance on ./data/collections/docs1k.zip document collection
+  Build time...
+	WhooshIndex: 48.324174880981445 seconds ---
+	WhooshForwardIndex: 52.558343172073364 seconds ---
+	WhooshPositionalIndex: 50.345619201660156 seconds ---
+	RAMIndex: 33.27410531044006 seconds ---
+	DiskIndex: 33.70204281806946 seconds ---
+  Load time...
+	WhooshIndex: 0.005595684051513672 seconds ---
+	WhooshForwardIndex: 0.005333900451660156 seconds ---
+	WhooshPositionalIndex: 0.0069828033447265625 seconds ---
+	RAMIndex: 0.9425878524780273 seconds ---
+	DiskIndex: 4.646108627319336 seconds ---
+  Disk space...
+	WhooshIndex: 22841239 space ---
+	WhooshForwardIndex: 28601480 space ---
+	WhooshPositionalIndex: 31287603 space ---
+	RAMIndex: 5930728 space ---
+	DiskIndex: 6397209 space ---
+----------------------------
+Testing search performance on ./data/collections/docs1k.zip document collection with query: 'obama family tree'
+  WhooshSearcher with index WhooshIndex for query 'obama family tree'
+16.771599035138742 	 best_doc.html
+16.45981358926495 	 clueweb09-en0010-79-2218.html
+15.862214516253687 	 clueweb09-en0010-57-32937.html
+15.783482115979092 	 clueweb09-en0001-02-21241.html
+15.586230698160584 	 clueweb09-en0008-45-29117.html
+
+Done ( 0.021114587783813477 seconds )
+
+--- Whoosh on Whoosh 0.025288820266723633 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.9214410781860352 seconds )
+
+--- SlowVSM on Whoosh 0.92144775390625 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'obama family tree'
+1.5479784285803948 	 best_doc.html
+0.2833910181951957 	 clueweb09-en0010-79-2218.html
+0.22600121112670213 	 clueweb09-en0009-30-2768.html
+0.22409241706694294 	 clueweb09-en0001-02-21241.html
+0.22354861150938476 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.009308576583862305 seconds )
+
+--- TermVSM on Whoosh 0.009312629699707031 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478204 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.223315177810402 	 clueweb09-en0009-30-2768.html
+0.2232749017293494 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.00835275650024414 seconds )
+
+--- TermVSM on RAM 0.008356809616088867 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478205 	 clueweb09-en0010-79-2218.html
+0.22938026506258977 	 clueweb09-en0001-02-21241.html
+0.2233151778104017 	 clueweb09-en0009-30-2768.html
+0.22327490172934916 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.06402945518493652 seconds )
+
+--- TermVSM on Disk 0.06403303146362305 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+1.547566508988559 	 best_doc.html
+0.2847432950478205 	 clueweb09-en0010-79-2218.html
+0.22938026506258974 	 clueweb09-en0001-02-21241.html
+0.2233151778104017 	 clueweb09-en0009-30-2768.html
+0.22327490172934916 	 clueweb09-en0009-30-2441.html
+
+Done ( 0.06764650344848633 seconds )
+
+--- DocVSM on Disk 0.06765055656433105 seconds ---
+=================================================================
+Testing indices and search on ./data/collections/docs10k.zip
+Building index with <class 'bmi.search.whooshy.WhooshBuilder'>
+Collection: ./data/collections/docs10k.zip
+Done ( 313.5163617134094 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshForwardBuilder'>
+Collection: ./data/collections/docs10k.zip
+Done ( 339.56747674942017 seconds )
+
+Building index with <class 'bmi.search.whooshy.WhooshPositionalBuilder'>
+Collection: ./data/collections/docs10k.zip
+Done ( 328.84718108177185 seconds )
+
+Building index with <class 'bmi.search.index.RAMIndexBuilder'>
+Collection: ./data/collections/docs10k.zip
+Done ( 248.26655864715576 seconds )
+
+Building index with <class 'bmi.search.index.DiskIndexBuilder'>
+Collection: ./data/collections/docs10k.zip
+Done ( 253.6866672039032 seconds )
+
+Building index with <class 'bmi.search.index.PositionalIndexBuilder'>
+Collection: ./data/collections/docs10k.zip
+Done ( 264.5330674648285 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshIndex'>
+Collection size: 9952
+Vocabulary size: 439173
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-37-20440.html: 0
+  Total frequency of word "seat" in the collection: 5919.0 occurrences over 997 documents
+  Docs containing the word 'seat': 997
+    First two documents: [(2, 1), (6, 9)]
+Done ( 0.8249027729034424 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshForwardIndex'>
+Collection size: 9952
+Vocabulary size: 439173
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-37-20440.html: 0
+  Total frequency of word "seat" in the collection: 5919.0 occurrences over 997 documents
+  Docs containing the word 'seat': 997
+    First two documents: [(2, 1), (6, 9)]
+Done ( 0.8306128978729248 seconds )
+
+Reading index with <class 'bmi.search.whooshy.WhooshPositionalIndex'>
+Collection size: 9952
+Vocabulary size: 439173
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-37-20440.html: 0
+  Total frequency of word "seat" in the collection: 5919.0 occurrences over 997 documents
+  Docs containing the word 'seat': 997
+    First two documents: [(2, 1), (6, 9)]
+Done ( 0.8168065547943115 seconds )
+
+Reading index with <class 'bmi.search.index.RAMIndex'>
+Collection size: 9952
+Vocabulary size: 363822
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-37-20440.html: 0
+  Total frequency of word "seat" in the collection: 5990 occurrences over 998 documents
+  Docs containing the word 'seat': 998
+    First two documents: [(2, 1), (6, 9)]
+Done ( 0.011060237884521484 seconds )
+
+Reading index with <class 'bmi.search.index.DiskIndex'>
+Collection size: 9952
+Vocabulary size: 363822
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-37-20440.html: 0
+  Total frequency of word "seat" in the collection: 5990 occurrences over 998 documents
+  Docs containing the word 'seat': 998
+    First two documents: [(2, 1), (6, 9)]
+Done ( 0.01113748550415039 seconds )
+
+Reading index with <class 'bmi.search.index.PositionalIndex'>
+Collection size: 9952
+Vocabulary size: 363822
+  Frequency of word "seat" in document 0 - clueweb09-enwp03-37-20440.html: 0
+  Total frequency of word "seat" in the collection: 5990 occurrences over 998 documents
+  Docs containing the word 'seat': 998
+    First two documents: [(2, 1), (6, 9)]
+Done ( 0.00971078872680664 seconds )
+
+------------------------------
+Checking search results for obama family tree
+  WhooshSearcher with index WhooshIndex for query 'obama family tree'
+19.979810076590102 	 clueweb09-en0010-79-02218.html
+19.00288024361077 	 clueweb09-en0010-57-32937.html
+18.90827827370846 	 clueweb09-en0001-02-21241.html
+18.856216807693514 	 clueweb09-en0010-57-32591.html
+18.834728104083005 	 clueweb09-en0010-57-32598.html
+
+Done ( 0.21234726905822754 seconds )
+
+  WhooshSearcher with index WhooshForwardIndex for query 'obama family tree'
+19.979810076590102 	 clueweb09-en0010-79-02218.html
+19.00288024361077 	 clueweb09-en0010-57-32937.html
+18.90827827370846 	 clueweb09-en0001-02-21241.html
+18.856216807693514 	 clueweb09-en0010-57-32591.html
+18.834728104083005 	 clueweb09-en0010-57-32598.html
+
+Done ( 0.21394610404968262 seconds )
+
+  WhooshSearcher with index WhooshPositionalIndex for query 'obama family tree'
+19.979810076590102 	 clueweb09-en0010-79-02218.html
+19.00288024361077 	 clueweb09-en0010-57-32937.html
+18.90827827370846 	 clueweb09-en0001-02-21241.html
+18.856216807693514 	 clueweb09-en0010-57-32591.html
+18.834728104083005 	 clueweb09-en0010-57-32598.html
+
+Done ( 0.35056591033935547 seconds )
+
+  ProximitySearcher with index WhooshPositionalIndex for query 'obama family tree'
+28.316629017198274 	 clueweb09-en0010-79-02218.html
+10.637796568069568 	 clueweb09-enwp00-09-18461.html
+10.637262171190622 	 clueweb09-enwp03-16-16773.html
+10.637262171190622 	 clueweb09-enwp03-00-13594.html
+10.637262171190622 	 clueweb09-enwp02-06-15081.html
+
+Done ( 0.0550847053527832 seconds )
+
+  SlowVSMSearcher with index WhooshIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 46.952505350112915 seconds )
+
+  TermBasedVSMSearcher with index WhooshIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.05624508857727051 seconds )
+
+  DocBasedVSMSearcher with index WhooshIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.06707978248596191 seconds )
+
+  SlowVSMSearcher with index WhooshForwardIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 3.761396884918213 seconds )
+
+  TermBasedVSMSearcher with index WhooshForwardIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.05635190010070801 seconds )
+
+  DocBasedVSMSearcher with index WhooshForwardIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.06756353378295898 seconds )
+
+  SlowVSMSearcher with index WhooshPositionalIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 78.50644588470459 seconds )
+
+  TermBasedVSMSearcher with index WhooshPositionalIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.06090497970581055 seconds )
+
+  DocBasedVSMSearcher with index WhooshPositionalIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.07152462005615234 seconds )
+
+  SlowVSMSearcher with index RAMIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 3.824711561203003 seconds )
+
+  TermBasedVSMSearcher with index RAMIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 0.27357935905456543 seconds )
+
+  DocBasedVSMSearcher with index RAMIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 0.288132905960083 seconds )
+
+  SlowVSMSearcher with index DiskIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343873 	 clueweb09-en0007-13-05862.html
+0.4231337905746499 	 clueweb09-en0005-38-00576.html
+0.4008683373191491 	 clueweb09-en0000-15-04138.html
+0.39436535731535927 	 clueweb09-en0005-63-02535.html
+
+Done ( 20.13962435722351 seconds )
+
+  TermBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343873 	 clueweb09-en0007-13-05862.html
+0.4231337905746499 	 clueweb09-en0005-38-00576.html
+0.4008683373191491 	 clueweb09-en0000-15-04138.html
+0.39436535731535927 	 clueweb09-en0005-63-02535.html
+
+Done ( 1.8587398529052734 seconds )
+
+  DocBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343873 	 clueweb09-en0007-13-05862.html
+0.4231337905746499 	 clueweb09-en0005-38-00576.html
+0.4008683373191491 	 clueweb09-en0000-15-04138.html
+0.39436535731535927 	 clueweb09-en0005-63-02535.html
+
+Done ( 1.8380770683288574 seconds )
+
+  SlowVSMSearcher with index PositionalIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 3.828173875808716 seconds )
+
+  TermBasedVSMSearcher with index PositionalIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 0.2747046947479248 seconds )
+
+  DocBasedVSMSearcher with index PositionalIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 0.284559965133667 seconds )
+
+  ProximitySearcher with index PositionalIndex for query 'obama family tree'
+28.099924611171208 	 clueweb09-en0010-79-02218.html
+8.74857579843319 	 clueweb09-enwp01-78-05310.html
+8.74857579843319 	 clueweb09-enwp00-09-18461.html
+8.74857579843319 	 clueweb09-enwp00-04-09625.html
+8.74857579843319 	 clueweb09-enwp00-00-09498.html
+
+Done ( 0.020672321319580078 seconds )
+
+----------------------------
+Testing index performance on ./data/collections/docs10k.zip document collection
+  Build time...
+	WhooshIndex: 312.89067029953003 seconds ---
+	WhooshForwardIndex: 340.8746380805969 seconds ---
+	WhooshPositionalIndex: 326.9629294872284 seconds ---
+	RAMIndex: 231.8636875152588 seconds ---
+	DiskIndex: 238.05746293067932 seconds ---
+  Load time...
+	WhooshIndex: 0.024383544921875 seconds ---
+	WhooshForwardIndex: 0.021223068237304688 seconds ---
+	WhooshPositionalIndex: 0.033080101013183594 seconds ---
+	RAMIndex: 3.794518232345581 seconds ---
+	DiskIndex: 18.07908058166504 seconds ---
+  Disk space...
+	WhooshIndex: 95728208 space ---
+	WhooshForwardIndex: 141085865 space ---
+	WhooshPositionalIndex: 158675051 space ---
+	RAMIndex: 35520125 space ---
+	DiskIndex: 43950957 space ---
+----------------------------
+Testing search performance on ./data/collections/docs10k.zip document collection with query: 'obama family tree'
+  WhooshSearcher with index WhooshIndex for query 'obama family tree'
+19.979810076590102 	 clueweb09-en0010-79-02218.html
+19.00288024361077 	 clueweb09-en0010-57-32937.html
+18.90827827370846 	 clueweb09-en0001-02-21241.html
+18.856216807693514 	 clueweb09-en0010-57-32591.html
+18.834728104083005 	 clueweb09-en0010-57-32598.html
+
+Done ( 0.08840560913085938 seconds )
+
+--- Whoosh on Whoosh 0.10337257385253906 seconds ---
+  SlowVSMSearcher with index WhooshIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 47.13595199584961 seconds )
+
+--- SlowVSM on Whoosh 47.13596057891846 seconds ---
+  TermBasedVSMSearcher with index WhooshIndex for query 'obama family tree'
+0.43641331844394726 	 clueweb09-en0002-89-01498.html
+0.423715741944431 	 clueweb09-en0007-13-05862.html
+0.4157382645418763 	 clueweb09-en0005-38-00576.html
+0.39837233687344675 	 clueweb09-en0006-84-27106.html
+0.38900530837750835 	 clueweb09-en0000-15-04138.html
+
+Done ( 0.056079864501953125 seconds )
+
+--- TermVSM on Whoosh 0.05608654022216797 seconds ---
+  TermBasedVSMSearcher with index RAMIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343872 	 clueweb09-en0007-13-05862.html
+0.42313379057464995 	 clueweb09-en0005-38-00576.html
+0.40086833731914917 	 clueweb09-en0000-15-04138.html
+0.39436535731535943 	 clueweb09-en0005-63-02535.html
+
+Done ( 0.26478099822998047 seconds )
+
+--- TermVSM on RAM 0.2647860050201416 seconds ---
+  TermBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343873 	 clueweb09-en0007-13-05862.html
+0.4231337905746499 	 clueweb09-en0005-38-00576.html
+0.4008683373191491 	 clueweb09-en0000-15-04138.html
+0.39436535731535927 	 clueweb09-en0005-63-02535.html
+
+Done ( 1.7759513854980469 seconds )
+
+--- TermVSM on Disk 1.775956153869629 seconds ---
+  DocBasedVSMSearcher with index DiskIndex for query 'obama family tree'
+0.4260425410363758 	 clueweb09-en0002-89-01498.html
+0.4239574690343873 	 clueweb09-en0007-13-05862.html
+0.4231337905746499 	 clueweb09-en0005-38-00576.html
+0.4008683373191491 	 clueweb09-en0000-15-04138.html
+0.39436535731535927 	 clueweb09-en0005-63-02535.html
+
+Done ( 1.8005962371826172 seconds )
+
+--- DocVSM on Disk 1.800600528717041 seconds ---
+----------------------------
+Testing PageRank
+0.3846153846153846 	 c
+0.3589743589743589 	 a
+0.2564102564102564 	 b
+
+--- Pagerank with toy_graph_1 0.04626965522766113 seconds ---
+0.30434782608695654 	 b
+0.2608695652173913 	 a
+0.2608695652173913 	 c
+
+--- Pagerank with toy_graph_2 0.0002617835998535156 seconds ---
+0.015311220333577027 	 clueweb09-en0000-06-11938.html
+0.0150763354171324 	 clueweb09-en0000-01-22977.html
+0.01499333694402322 	 clueweb09-en0000-06-11940.html
+0.014562888175606067 	 clueweb09-en0000-06-11932.html
+0.014513940119176652 	 clueweb09-en0000-01-27969.html
+
+--- Pagerank with simulated links for doc1k 0.12061071395874023 seconds ---
