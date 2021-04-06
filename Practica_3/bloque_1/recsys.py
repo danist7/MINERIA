@@ -10,23 +10,48 @@
 
 import heapq
 from abc import ABC, abstractmethod
-
+import math
+import random
 
 class Ratings:
     def __init__(self, file="", delim='\t'):
-        """ Completar """
+        self.ratings = {}
+        self.tam = 0
+        file = open(p, 'r')
+        lines = file.readlines()
+        for line in lines:
+            # info[0] es la persona, info[1] es el elemento a evaluar e info[2]
+            # es el rating
+            info = line.split(delim)
+            self.rate(item[0],item[1],item[2])
+        file.close()
 
     def rate(self, user, item, rating):
-        """ Completar """
+        if item not in self.ratings:
+            self.ratings[item] = {}
+        self.ratings[item][user] = rating
+        self.tam += 1
 
     def rating(self, user, item):
-        """ Completar """
+        return self.ratings[item][user]
 
     def random_split(self, ratio):
-        """ Completar """
+        train = self.ratings.copy()
+        test = {}
+        contador = math.floor((1-ratio)*self.tam)
+        for i in range(contador):
+            item = random.choice(list(train.keys()))
+            user = random.choice(list(train[item].keys()))
+            rating = train[items][user]
 
-    """ Y completar... """
+            if item not in test:
+                test[item] = {}
+            test[item][user] = rating
 
+            train[item].pop(user)
+            if len(train[item]) == 0:
+                train.pop(item)
+         return train, test
 
 class Ranking:
     def __init__(self, topn):
@@ -96,7 +121,7 @@ class Metric(ABC):
     def __repr__(self):
         return type(self).__name__ + ("@" + str(self.cutoff) if self.cutoff != math.inf else "")
 
-    # Esta función se puede dejar abstracta declarándola @abstractmethod, 
+    # Esta función se puede dejar abstracta declarándola @abstractmethod,
     # pero también se puede meter algo de código aquí y el resto en las
     # subclases - a criterio del estudiante.
     def compute(self, recommendation):
