@@ -14,18 +14,18 @@ import math
 import random
 
 class Ratings:
-    def __init__(self, file="", delim='\t'):
+    def __init__(self, p="", delim='\t'):
         self.ratings = {}
         self.tam = 0
-        self.items = set()
+        self.items_names = set()
         file = open(p, 'r')
         lines = file.readlines()
         for line in lines:
             # info[0] es la persona, info[1] es el elemento a evaluar e info[2]
             # es el rating
             info = line.split(delim)
-            self.rate(info[0],info[1],info[2])
-            items.add(info[1])
+            self.rate(int(info[0]),int(info[1]),float(info[2]))
+            self.items_names.add(int(info[1]))
         file.close()
 
     def rate(self, user, item, rating):
@@ -36,6 +36,31 @@ class Ratings:
 
     def rating(self, user, item):
         return self.ratings[user][item]
+
+    def nratings(self):
+        nrating = 0
+        for user in self.ratings:
+            for item in self.ratings[user]:
+                nrating += 1
+        return nrating
+
+    def users(self):
+        return list(self.ratings.keys())
+
+    def items(self):
+        return list(self.items_names)
+
+    def user_items(self,user):
+        if user not in self.ratings:
+            return
+        return self.ratings[user]
+
+    def item_users(self,item):
+        ret = {}
+        for u in self.ratings:
+            if item in self.ratings[u]:
+                ret[u] = self.ratings[u][item]
+        return ret
 
     def random_split(self, ratio):
         train = self.ratings.copy()
@@ -53,7 +78,7 @@ class Ratings:
             train[user].pop(item)
             if len(train[user]) == 0:
                 train.pop(user)
-         return train, test
+        return train, test
 
 
 
@@ -128,10 +153,10 @@ class Recommender(ABC):
     def recommend(self, topn):
         ratings = self.training.ratings
         users = ratings.keys()
-        items = self.training.items
-        for u in users:
-            ranked = set(ratings[u].keys())
-            to_rank = items - ranked
+        items = set(self.training.items())
+        for user in users:
+            ranked = set(ratings[user].keys())
+            to_rank = items.difference(ranked)
             self.rankings[user] = Ranking(topn)
             for item in to_rank:
                 self.rankings[user].add(item,self.score(user,item))
@@ -158,14 +183,96 @@ class AverageRecommender(Recommender):
     def score(self, user, item):
         cont = 0
         sum = 0
-        for u in self.training:
-            if item in self.training[u]:
-                sum += self.training[u][item]
+        for u in self.training.ratings:
+            if item in self.training.ratings[u]:
+                sum += self.training.ratings[u][item]
                 cont += 1
         if cont < self.threshold:
             return 0
         else:
             return sum/cont
+
+
+class UserKNNRecommender(Recommender):
+    def __init__(self, ratings, sim, k):
+        super().__init__(ratings)
+        self.sim = sim
+        self.k = k
+        self.vecindario = {}
+
+        similitud = self.sim.similitudes()
+
+        for u in similitud:
+            self.vecindario[u] = Ranking(k)
+            for v in similitud[u]:
+                self.vecindario[u].add(v,similitud[u][v])
+
+
+    def score(self,user,item):
+        sc = 0
+        for v,score in self.vecindario[user]:
+            if item not in self.training.ratings[v]:
+                continue
+            sc+=self.training.ratings[v][item]*score
+        return sc
+
+class NormUserKNNRecommender(UserKNNRecommender):
+    def __init__(self, ratings, sim, k, min):
+        self.min = min
+        super().__init__(ratings, sim, k)
+
+    def score(self,user,item):
+        sc = 0
+        den = 0
+        count = 0
+        for v,score in self.vecindario[user]:
+            if item not in self.training.ratings[v]:
+                continue
+            sc += self.training.ratings[v][item]*score
+            den += score
+            count += 1
+        if count < self.min:
+            return 0
+        return sc/den
+
+class CosineUserSimilarity:
+    def __init__(self,ratings):
+
+        self.training = ratings.ratings
+        self.sim = {}
+        self.modulos = {}
+
+        users = list(self.training.keys())
+
+        for u in users:
+            if u not in self.sim:
+                self.sim[u] = {}
+            if u not in self.modulos:
+                self.modulos[u] = self.module(self.training[u])
+            for v in users:
+                if u == v:
+                    continue
+                if v in self.sim[u]:
+                    continue
+                if v not in self.sim:
+                    self.sim[v] = {}
+                cos = 0
+                if v not in self.modulos:
+                    self.modulos[v] = self.module(self.training[v])
+                for item in self.training[u]:
+                    if item in self.training[v]:
+                        cos+= self.training[u][item]*self.training[v][item]
+                self.sim[u][v] = cos/(self.modulos[u]*self.modulos[v])
+                self.sim[v][u] = cos/(self.modulos[u]*self.modulos[v])
+
+    def module(self,dic):
+        res = 0
+        for item in dic:
+            res+=dic[item]*dic[item]
+        return math.sqrt(res)
+
+    def similitudes(self):
+        return self.sim
 
 class UserSimilarity(ABC):
     @abstractmethod
