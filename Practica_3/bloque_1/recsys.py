@@ -226,7 +226,7 @@ class NormUserKNNRecommender(UserKNNRecommender):
         den = 0
         count = 0
         for v,score in self.vecindario[user]:
-            if item not in self.training.ratings[v]:
+            if item not in self.training.ratings[v] or score == 0:
                 continue
             sc += self.training.ratings[v][item]*score
             den += score
@@ -235,6 +235,27 @@ class NormUserKNNRecommender(UserKNNRecommender):
             return 0
         return sc/den
 
+class ItemNNRecommender(Recommender):
+        def __init__(self, ratings, sim):
+            super().__init__(ratings)
+            self.sim = sim
+            self.vecindario = {}
+
+            similitud = self.sim.similitudes()
+
+            for i in similitud:
+                self.vecindario[i] = Ranking(len(self.training.items()))
+                for j in similitud[i]:
+                    self.vecindario[i].add(j,similitud[i][j])
+
+        def score(self,user,item):
+            sc = 0
+            for j,score in self.vecindario[item]:
+                sc+=self.training.ratings[user][j]*score
+            return sc
+
+
+
 class CosineUserSimilarity:
     def __init__(self,ratings):
 
@@ -242,7 +263,7 @@ class CosineUserSimilarity:
         self.sim = {}
         self.modulos = {}
 
-        users = list(self.training.keys())
+        users = list(ratings.users())
 
         for u in users:
             if u not in self.sim:
@@ -274,6 +295,89 @@ class CosineUserSimilarity:
     def similitudes(self):
         return self.sim
 
+class PearsonUserSimilarity:
+    def __init__(self,ratings):
+
+        self.training = ratings.ratings
+        self.sim = {}
+
+        users = list(ratings.users())
+
+        for u in users:
+            if u not in self.sim:
+                self.sim[u] = {}
+            for v in users:
+                if u == v:
+                    continue
+                if v in self.sim[u]:
+                    continue
+                if v not in self.sim:
+                    self.sim[v] = {}
+                pear = 0
+                mod_u = 0
+                mod_v = 0
+                prom_u = self.promedio(u)
+                prom_v = self.promedio(v)
+                for item in self.training[u]:
+                    if item in self.training[v]:
+                        mod_u += (self.training[u][item] - prom_u)* (self.training[u][item] - prom_u)
+                        mod_v += (self.training[v][item] - prom_v)* (self.training[v][item] - prom_v)
+                        pear+= (self.training[u][item] - prom_u)*(self.training[v][item] - prom_v)
+                self.sim[u][v] = pear/(math.sqrt(mod_u)*math.sqrt(mod_v))
+                self.sim[v][u] = pear/(math.sqrt(mod_u)*math.sqrt(mod_v))
+
+
+    def promedio(self,user):
+        pr = 0
+        for item in self.training[user]:
+            pr+=self.training[user][item]
+
+        return pr/len(self.training[user])
+
+
+
+
+class CosineItemSimilarity:
+    def __init__(self,ratings):
+
+        self.training = ratings.ratings
+        self.sim = {}
+        self.modulos = {}
+
+        items = self.training.items()
+
+        for i in items:
+            if i not in self.sim:
+                self.sim[i] = {}
+            if i not in self.modulos:
+                self.modulos[i] = self.module(self.training,i)
+            for j in items:
+                if i == j:
+                    continue
+                if j in self.sim[i]:
+                    continue
+                if j not in self.sim:
+                    self.sim[j] = {}
+                cos = 0
+                if j not in self.modulos:
+                    self.modulos[j] = self.module(self.training,j)
+                for user in self.training:
+                    if i in self.training[user] and j in self.training[user]:
+                        cos+= self.training[user][i]*self.training[user][j]
+                self.sim[i][j] = cos/(self.modulos[i]*self.modulos[j])
+                self.sim[j][i] = cos/(self.modulos[i]*self.modulos[j])
+
+
+    def module(self,dic,i):
+        res = 0
+        for user in dic:
+            if i in dic[user]:
+                res+=dic[user][i]*dic[user][i]
+        return math.sqrt(res)
+
+    def similitudes(self):
+        return self.sim
+
 class UserSimilarity(ABC):
     @abstractmethod
     def sim(self, user1, user2):
@@ -292,6 +396,75 @@ class Metric(ABC):
     # Esta función se puede dejar abstracta declarándola @abstractmethod,
     # pero también se puede meter algo de código aquí y el resto en las
     # subclases - a criterio del estudiante.
+    @abstractmethod
     def compute(self, recommendation):
-        """ Completar """
         return
+
+class Precision(Metric):
+    def __init__(self,test, cutoff, threshold=0):
+        self.threshold = threshold
+        super().__init__(test,cutoff)
+
+        def compute(self, recommendation):
+            pr = 0
+            rel = 0
+            pos = 1
+            for user in self.test:
+                for item in recommendation[user]:
+                    if item in test[user]:
+                        if test[user][item] >= self.threshold:
+                            rel+=1
+                    if pos == cutoff:
+                        break
+                    else:
+                        pos+=1
+
+                pr+=rel/self.cutoff
+            return pr/len(self.test.keys())
+
+
+class Recall(Metric):
+    def __init__(self,test, cutoff, threshold=0):
+        self.threshold = threshold
+        super().__init__(test,cutoff)
+        self.relevantes = {}
+        for user in self.test:
+            self.relevantes[user] = 0
+            for item in self.test[user]:
+                if self.test[user][item] >= self.threshold:
+                    self.relevantes[user] += 1
+
+    def compute(self, recommendation):
+        pr = 0
+        rel = 0
+        pos = 1
+        for user in self.test:
+            for item in recommendation[user]:
+                if item in test[user]:
+                    if test[user][item] >= self.threshold:
+                        rel+=1
+                if pos == cutoff:
+                    break
+                else:
+                    pos+=1
+            if self.relevantes[user] != 0:
+                pr+=rel/self.relevantes[user]
+
+        return pr/len(self.test.keys())
+
+
+
+def RMSE(Metric):
+    def __init__(self,test):
+        self.threshold = threshold
+        super().__init__(test,0)
+
+    def compute(self, recommendation):
+        suma = 0
+        for user in self.test:
+            for item in self.test[user]:
+                if item in recommendation[user]:
+                    suma+=(self.test[user][item]-recommendation[user][item])*(self.test[user][item]-recommendation[user][item])
+                else:
+                    suma+=self.test[user][item]*self.test[user][item]
+        return math.sqrt(suma/len(self.test.keys()))
