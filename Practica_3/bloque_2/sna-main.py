@@ -17,10 +17,10 @@ def main():
     test_network("graph/small1.csv", ",", 5, 6, 4, int)
     test_network("graph/small2.csv", ",", 5, 3, 5, int)
     test_network("graph/small3.csv", ",", 5, "a", "b")
-    test_network("graph/facebook_combined.txt", " ", 5, 9, 3, int)
+    #test_network("graph/facebook_combined.txt", " ", 5, 9, 3, int)
     test_network("graph/twitter.csv", ",", 5, "el_pais", "ElviraLindo")
-    test_network("graph/barabasi.csv", ",", 5, 1, 2, int)
-    test_network("graph/erdos.csv", ",", 5, 1, 2, int)
+    #test_network("graph/barabasi.csv", ",", 5, 1, 2, int)
+    #test_network("graph/erdos.csv", ",", 5, 1, 2, int)
 
 
 def test_network(file, delimiter, topn, u, v, parse=0):
@@ -40,7 +40,7 @@ def test_network(file, delimiter, topn, u, v, parse=0):
     # Métricas globales de red
     print("-------------------------")
     test_global_metric(ClusteringCoefficient(), network)
-    test_global_metric(AvgUserMetric(UserClusteringCoefficient()), network)
+    test_global_metric(AvgUserMetric(UserClusteringCoefficient(topn)), network)
     test_global_metric(Assortativity(), network)
 
 
