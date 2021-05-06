@@ -35,12 +35,12 @@ def test_network(file, delimiter, topn, u, v, parse=0):
 
     # Métricas de arcos
     print("-------------------------")
-    test_metric(Embeddedness(topn), network, (u, v))
+    #test_metric(Embeddedness(topn), network, (u, v))
 
     # Métricas globales de red
     print("-------------------------")
     test_global_metric(ClusteringCoefficient(), network)
-    test_global_metric(AvgUserMetric(UserClusteringCoefficient(topn)), network)
+    test_global_metric(AvgUserMetric(UserClusteringCoefficient()), network)
     test_global_metric(Assortativity(), network)
 
 

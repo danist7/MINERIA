@@ -1,6 +1,7 @@
 import heapq
 from abc import ABC, abstractmethod
 import math
+import random
 
 class UndirectedSocialNetwork:
     def __init__(self, file, delimiter='\t', parse=0):
@@ -20,6 +21,8 @@ class UndirectedSocialNetwork:
                 self.sn[u1] = set()
             if u2 not in self.sn:
                 self.sn[u2] = set()
+            if u1 in self.sn[u2] and u2 in self.sn[u1]:
+                continue
             self.sn[u1].add(u2)
             self.sn[u2].add(u1)
             self.edges+=1
@@ -63,7 +66,7 @@ class Metric(ABC):
 
 
 class LocalMetric(Metric):
-    def __init__(self, topn):
+    def __init__(self, topn=5):
         self.topn = topn
 
     @abstractmethod
@@ -78,15 +81,11 @@ class UserClusteringCoefficient(LocalMetric):
         if den == 0:
             return 0
         num = 0
-        visitados = []
-        for first in network.contacts(element):
-            for second in network.contacts(first):
-                par = set([first,second])
-                if par in visitados:
-                    continue
-                visitados.append(par)
-                if element in network.contacts(second):
-                    num+=1
+        vecinos = list(network.contacts(element))
+        for i in range(len(vecinos)):
+            for j in range(i+1,len(vecinos)):
+                if vecinos[j] in network.contacts(vecinos[i]):
+                    num += 1
         return num/den
 
     def compute_all(self,network):
@@ -101,12 +100,19 @@ class ClusteringCoefficient(Metric):
     def compute_all(self,network):
         triangulos = []
         tripletas = []
+        visitados1 = set()
+        visitados2 = set()
         for u1 in network.users():
-            for u2 in network.contacts(u1):
-                for u3 in network.contacts(u2):
-                    if u1 == u3:
+            usuario = set()
+            visitados1.add(u1)
+            usuario.add(u1)
+            for u2 in (network.contacts(u1) - visitados1):
+                visitados2.add(u2)
+                for u3 in (network.contacts(u2) - visitados1 -usuario):
+                    if u1 == u3 :
                         continue
-                    if (u1,u2,u3) in tripletas:
+                    if set((u1,u2,u3)) in tripletas or set((u1,u2,u3)) in triangulos:
+                        print(u1,u2,u3)
                         continue
                     tripletas.append((u1,u2,u3))
                     if u1 in network.contacts(u3):
@@ -114,8 +120,7 @@ class ClusteringCoefficient(Metric):
                             continue
                         triangulos.append(set((u1,u2,u3)))
 
-
-        return (2*3*len(triangulos))/len(tripletas)
+        return (3*len(triangulos))/len(tripletas)
 
 class Embeddedness(LocalMetric):
     # Element es el par (u,v) del que calcular la métrica
@@ -217,6 +222,58 @@ class Dijkstra:
             marcados.add(a)
             a = sorted(distancias.items(), key=lambda item: item[1])[0][0]
         return distancias
+
+class Amigos_Comunes:
+    def __init__(self,num_nodos,p,q):
+        self.num_nodos = num_nodos
+        self.p = p
+        self.q = q
+        self.sn = {}
+        self.edges = 0
+        for i in range(self.num_nodos):
+            self.sn[i] = set()
+
+    def create(self):
+        for i in range(self.num_nodos):
+            if i == 0:
+                for j in range(1,self.num_nodos):
+                    if p <= random.random():
+                        self.sn[i].add(j)
+                        self.sn[j].add(i)
+                        edges += 1
+            else:
+                for j in range(self.num_nodos):
+                    vecino = 0
+                    continuar = 0
+                    if i == j:
+                        continue
+                    for nodo in self.sn[i]:
+                        if j in self.sn[nodo]:
+                            vecino = 1
+                            break
+                    if vecino:
+                        if q<= random.random():
+                            if p <= random.random():
+                                self.sn[i].add(j)
+                                self.sn[j].add(i)
+                                edges += 1
+                    else:
+                        if q>random.random():
+                            if p <= random.random():
+                                self.sn[i].add(j)
+                                self.sn[j].add(i)
+                                edges += 1
+        return
+
+    def to_csv(self,file,delimiter='\t'):
+        f = open(file,'w')
+        for user1 in self.sn:
+            for user2 in self.sn[user1]:
+                if user2 < user1:
+                    continue
+                linea = str(user1) + delimiter + str(user2) + "\n"
+                f.write(linea)
+        f.close()
 
 class Ranking:
     class ScoredUser:
