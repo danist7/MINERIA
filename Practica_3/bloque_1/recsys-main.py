@@ -28,8 +28,8 @@ def main():
 def toy_test(dataset, separator='\t'):
     training = Ratings(dataset + "-train.dat", separator)
     test = Ratings(dataset + "-test.dat", separator)
-    #metrics = [Precision(test, cutoff=4, threshold=4), Recall(test, cutoff=4, threshold=4)]
-    #evaluate_recommenders(training, metrics, k=4, min=2, topn=4)
+    metrics = [Precision(test, cutoff=4, threshold=4), Recall(test, cutoff=4, threshold=4)]
+    evaluate_recommenders(training, metrics, k=4, min=2, topn=4)
 
 
 # More complete testing on a generic dataset
@@ -40,9 +40,9 @@ def test_dataset(ratings_file, user, item, k, min, topn, cutoff, delimiter='\t')
     # Run some recommenders on the entire rating data as input - no evaluation
     test_recommenders(ratings, k, min, topn)
     # Now produce a rating split to re-run the recommenders on the training data and evaluate them with the test data
-    #train, test = ratings.random_split(0.8)
-    #metrics = [Precision(test, cutoff, threshold=4), Recall(test, cutoff, threshold=4)]
-    #evaluate_recommenders(train, metrics, k, min, 2 * topn)  # Double top n to test a slightly deeper ranking
+    train, test = ratings.random_split(0.8)
+    metrics = [Precision(test, cutoff, threshold=4), Recall(test, cutoff, threshold=4)]
+    evaluate_recommenders(train, metrics, k, min, 2 * topn)  # Double top n to test a slightly deeper ranking
 
 
 # Test the rating data handling code (Ratings class)
@@ -70,7 +70,7 @@ def test_recommenders(ratings, k, min, topn):
     knn = UserKNNRecommender(ratings, sim, k)
     timer(start)
     start = time.process_time()
-    test_recommender(UserKNNRecommender(ratings, sim, k), topn)
+    test_recommender(knn, topn)
     timer(start)
     start = time.process_time()
     test_recommender(NormUserKNNRecommender(ratings, sim, k, min), topn)

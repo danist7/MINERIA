@@ -100,27 +100,24 @@ class ClusteringCoefficient(Metric):
     def compute_all(self,network):
         triangulos = []
         tripletas = []
-        visitados1 = set()
-        visitados2 = set()
         for u1 in network.users():
-            usuario = set()
-            visitados1.add(u1)
-            usuario.add(u1)
-            for u2 in (network.contacts(u1) - visitados1):
-                visitados2.add(u2)
-                for u3 in (network.contacts(u2) - visitados1 -usuario):
-                    if u1 == u3 :
-                        continue
-                    if set((u1,u2,u3)) in tripletas or set((u1,u2,u3)) in triangulos:
-                        print(u1,u2,u3)
+            for u2 in network.contacts(u1):
+                for u3 in (network.contacts(u2) - set((u1))):
+                    if (u1,u2,u3) in tripletas:
                         continue
                     tripletas.append((u1,u2,u3))
                     if u1 in network.contacts(u3):
                         if set((u1,u2,u3)) in triangulos:
                             continue
                         triangulos.append(set((u1,u2,u3)))
+                        tripletas.append((u1,u3,u2))
+                        tripletas.append((u2,u3,u1))
+                        tripletas.append((u2,u1,u3))
+                        tripletas.append((u3,u1,u2))
+                        tripletas.append((u3,u2,u1))
 
-        return (3*len(triangulos))/len(tripletas)
+
+        return (2*3*len(triangulos))/len(tripletas)
 
 class Embeddedness(LocalMetric):
     # Element es el par (u,v) del que calcular la métrica
@@ -329,3 +326,46 @@ class Ranking:
         for user, score in self:
             r += str(user) + ":" + str(score) + " "
         return r[0:-1] + ">"
+
+# Closeness
+# Average Shortest Path
+# Amigos_comunes
+def student_test():
+    test_network("graph/small1.csv", ",", 5, 6, 4, int)
+    test_network("graph/small2.csv", ",", 5, 3, 5, int)
+    test_network("graph/small3.csv", ",", 5, "a", "b")
+
+    print("Creating amigos comunes")
+    start = time.process_time()
+    amigos = Amigos_Comunes(50,0.7,0.9)
+    amigos.create()
+    amigos.to_csv("amigos_comunes.csv")
+    timer(start)
+
+def test_network(file, delimiter, topn, u, v, parse=0):
+    print("==================================================\nTesting " + file + " network")
+    network = UndirectedSocialNetwork(file, delimiter=delimiter, parse=parse)
+    print(len(network.users()), "users and", network.nedges(), "contact relationships")
+    print("User", u, "has", network.degree(u), "contacts")
+
+    print("-------------------------")
+    test_metric(Closeness(topn), network, u)
+
+    print("-------------------------")
+    test_global_metric(AverageShortestPath(), network)
+
+
+
+def test_metric(metric, network, example):
+    start = time.process_time()
+    print(metric, ":", metric.compute_all(network))
+    print(str(metric) + "(" + str(example) + ") =", metric.compute(network, example))
+    timer(start)
+
+def test_global_metric(metric, network):
+    start = time.process_time()
+    print(metric, "=", metric.compute_all(network))
+    timer(start)
+
+def timer(start):
+    print("--> elapsed time:", datetime.timedelta(seconds=round(time.process_time() - start)), "<--")

@@ -12,6 +12,10 @@ import heapq
 from abc import ABC, abstractmethod
 import math
 import random
+import datetime
+import itertools
+import time
+import copy
 
 class Ratings:
     def __init__(self, p="", delim='\t'):
@@ -63,21 +67,21 @@ class Ratings:
         return ret
 
     def random_split(self, ratio):
-        train = self.ratings.copy()
-        test = {}
+        train = copy.deepcopy(self)
+        test = copy.deepcopy(self)
         contador = math.floor((1-ratio)*self.tam)
         for i in range(contador):
-            user = random.choice(list(train.keys()))
-            item = random.choice(list(train[user].keys()))
-            rating = train[user][item]
+            user = random.choice(list(train.ratings.keys()))
+            item = random.choice(list(train.ratings[user].keys()))
+            rating = train.ratings[user][item]
 
-            if user not in test:
-                test[user] = {}
-            test[user][item] = rating
+            if user not in test.ratings:
+                test.ratings[user] = {}
+            test.ratings[user][item] = rating
 
-            train[user].pop(item)
-            if len(train[user]) == 0:
-                train.pop(user)
+            train.ratings[user].pop(item)
+            if len(train.ratings[user]) == 0:
+                train.ratings.pop(user)
         return train, test
 
 
@@ -235,7 +239,7 @@ class NormUserKNNRecommender(UserKNNRecommender):
             return 0
         return sc/den
 
-class ItemNNRecommender(Recommender):
+class ItemKNNRecommender(Recommender):
         def __init__(self, ratings, sim):
             super().__init__(ratings)
             self.sim = sim
@@ -251,6 +255,8 @@ class ItemNNRecommender(Recommender):
         def score(self,user,item):
             sc = 0
             for j,score in self.vecindario[item]:
+                if j not in self.training.ratings[user]:
+                    continue
                 sc+=self.training.ratings[user][j]*score
             return sc
 
@@ -323,6 +329,10 @@ class PearsonUserSimilarity:
                         mod_u += (self.training[u][item] - prom_u)* (self.training[u][item] - prom_u)
                         mod_v += (self.training[v][item] - prom_v)* (self.training[v][item] - prom_v)
                         pear+= (self.training[u][item] - prom_u)*(self.training[v][item] - prom_v)
+                if (math.sqrt(mod_u)*math.sqrt(mod_v)) == 0:
+                    self.sim[u][v] = 0
+                    self.sim[v][u] = 0
+                    continue
                 self.sim[u][v] = pear/(math.sqrt(mod_u)*math.sqrt(mod_v))
                 self.sim[v][u] = pear/(math.sqrt(mod_u)*math.sqrt(mod_v))
 
@@ -334,7 +344,8 @@ class PearsonUserSimilarity:
 
         return pr/len(self.training[user])
 
-
+    def similitudes(self):
+        return self.sim
 
 
 class CosineItemSimilarity:
@@ -344,7 +355,7 @@ class CosineItemSimilarity:
         self.sim = {}
         self.modulos = {}
 
-        items = self.training.items()
+        items = ratings.items()
 
         for i in items:
             if i not in self.sim:
@@ -387,7 +398,7 @@ class UserSimilarity(ABC):
 
 class Metric(ABC):
     def __init__(self, test, cutoff):
-        self.test = test
+        self.test = test.ratings
         self.cutoff = cutoff
 
     def __repr__(self):
@@ -405,29 +416,31 @@ class Precision(Metric):
         self.threshold = threshold
         super().__init__(test,cutoff)
 
-        def compute(self, recommendation):
-            pr = 0
-            rel = 0
-            pos = 1
-            for user in self.test:
-                for item in recommendation[user]:
-                    if item in test[user]:
-                        if test[user][item] >= self.threshold:
-                            rel+=1
-                    if pos == cutoff:
-                        break
-                    else:
-                        pos+=1
+    def compute(self, recommendation):
+        pr = 0
+        rel = 0
+        pos = 1
+        for user in self.test:
+            print(user,recommendation[user])
+            for score,item in recommendation[user]:
+                if item in self.test[user]:
+                    if self.test[user][item] >= self.threshold:
+                        print(user,score,self.test[user][item] )
+                        rel+=1
+                if pos == self.cutoff:
+                    break
+                else:
+                    pos+=1
 
-                pr+=rel/self.cutoff
-            return pr/len(self.test.keys())
+            pr+=rel/self.cutoff
+        return pr/len(self.test.keys())
 
 
 class Recall(Metric):
     def __init__(self,test, cutoff, threshold=0):
         self.threshold = threshold
-        super().__init__(test,cutoff)
         self.relevantes = {}
+        super().__init__(test,cutoff)
         for user in self.test:
             self.relevantes[user] = 0
             for item in self.test[user]:
@@ -439,24 +452,23 @@ class Recall(Metric):
         rel = 0
         pos = 1
         for user in self.test:
-            for item in recommendation[user]:
-                if item in test[user]:
-                    if test[user][item] >= self.threshold:
+            for item,score in recommendation[user]:
+                if item in self.test[user]:
+                    if self.test[user][item] >= self.threshold:
                         rel+=1
-                if pos == cutoff:
+                if pos == self.cutoff:
                     break
                 else:
                     pos+=1
             if self.relevantes[user] != 0:
-                pr+=rel/self.relevantes[user]
+                pr+= (rel/self.relevantes[user])
 
         return pr/len(self.test.keys())
 
 
 
-def RMSE(Metric):
+class RMSE(Metric):
     def __init__(self,test):
-        self.threshold = threshold
         super().__init__(test,0)
 
     def compute(self, recommendation):
@@ -468,3 +480,83 @@ def RMSE(Metric):
                 else:
                     suma+=self.test[user][item]*self.test[user][item]
         return math.sqrt(suma/len(self.test.keys()))
+
+
+
+# ItemNNRecomender
+# Pearson
+# RMSE
+def student_test():
+    print("=========================\nTesting toy dataset")
+    test_dataset("data/toy-ratings.dat", 1, 2, k=4, min=2, topn=4, cutoff=4)
+    print("=========================\nTesting MovieLens \"latest-small\" dataset")
+    test_dataset("data/ratings.csv", 35, 1240, k=10, min=3, topn=5, cutoff=5, delimiter=',')
+
+
+def test_dataset(ratings_file, user, item, k, min, topn, cutoff, delimiter='\t'):
+    ratings = Ratings(ratings_file, delimiter)
+    test_recommender(ratings, k, topn)
+    # Now produce a rating split to re-run the recommenders on the training data and evaluate them with the test data
+    train, test = ratings.random_split(0.8)
+    metric = RMSE(test)
+    evaluate_recommenders(train, metric, k, min, 2 * topn)  # Double top n to test a slightly deeper ranking
+
+
+
+def test_recommender(ratings, k, topn):
+    start = time.process_time()
+    print("Creating item cosine similarity")
+    sim = CosineItemSimilarity(ratings)
+    timer(start)
+
+    start = time.process_time()
+    print("Creating kNN Item recommender")
+    knn = ItemKNNRecommender(ratings, sim)
+    timer(start)
+
+    start = time.process_time()
+    print("Testing", knn, "(top", str(topn) + ")")
+    recommendation = knn.recommend(topn)
+    for user in itertools.islice(recommendation, 4):
+        print("    User", user, "->", recommendation[user])
+    timer(start)
+
+    start = time.process_time()
+    print("Creating user Pearson similarity")
+    sim = PearsonUserSimilarity(ratings)
+    timer(start)
+
+    start = time.process_time()
+    print("Creating kNN User recommender")
+    knn = UserKNNRecommender(ratings, sim, k)
+    timer(start)
+
+    start = time.process_time()
+    print("Testing", knn, "(top", str(topn) + ")")
+    recommendation = knn.recommend(topn)
+    for user in itertools.islice(recommendation, 4):
+        print("    User", user, "->", recommendation[user])
+    timer(start)
+
+def evaluate_recommenders(training, metric, k, min, topn):
+    print("-------------------------")
+    start = time.process_time()
+    evaluate_recommender(RandomRecommender(training), topn, metric)
+    evaluate_recommender(MajorityRecommender(training, threshold=4), topn, metric)
+    evaluate_recommender(AverageRecommender(training, min), topn, metric)
+    sim = CosineUserSimilarity(training)
+    knn = UserKNNRecommender(training, sim,k)
+    evaluate_recommender(knn, topn, metric)
+    evaluate_recommender(NormUserKNNRecommender(training, sim, k, min), topn, metric)
+
+
+
+def evaluate_recommender(recommender, topn, metric):
+    print("Evaluating", recommender)
+    recommendation = recommender.recommend(topn)
+
+    print("   ", metric, "=", metric.compute(recommendation))
+
+
+def timer(start):
+    print("--> elapsed time:", datetime.timedelta(seconds=round(time.process_time() - start)), "<--")
