@@ -97,27 +97,42 @@ class UserClusteringCoefficient(LocalMetric):
 
 class ClusteringCoefficient(Metric):
 
-    def compute_all(self,network):
-        triangulos = []
-        tripletas = []
-        for u1 in network.users():
-            for u2 in network.contacts(u1):
-                for u3 in (network.contacts(u2) - set((u1))):
-                    if (u1,u2,u3) in tripletas:
-                        continue
-                    tripletas.append((u1,u2,u3))
-                    if u1 in network.contacts(u3):
-                        if set((u1,u2,u3)) in triangulos:
+    #def compute_all(self,network):
+        #triangulos = []
+        #tripletas = []
+        #for u1 in network.users():
+            #for u2 in network.contacts(u1):
+                #for u3 in (network.contacts(u2) - set((u1))):
+                #    if (u1,u2,u3) in tripletas:
+                    #    continue
+                    #tripletas.append((u1,u2,u3))
+                #    if u1 in network.contacts(u3):
+                #        if set((u1,u2,u3)) in triangulos:
+                            #continue
+                #        triangulos.append(set((u1,u2,u3)))
+                #        tripletas.append((u1,u3,u2))
+                #        tripletas.append((u2,u3,u1))
+                #        tripletas.append((u2,u1,u3))
+                #        tripletas.append((u3,u1,u2))
+                #        tripletas.append((u3,u2,u1))
+
+
+        #return (2*3*len(triangulos))/len(tripletas)
+
+        def compute_all(self,network):
+            triangulos = 0
+            tripletas = 0
+            for u1 in network.users():
+                for u2 in network.contacts(u1):
+                    for u3 in network.contacts(u2):
+                        if u3 == u1:
                             continue
-                        triangulos.append(set((u1,u2,u3)))
-                        tripletas.append((u1,u3,u2))
-                        tripletas.append((u2,u3,u1))
-                        tripletas.append((u2,u1,u3))
-                        tripletas.append((u3,u1,u2))
-                        tripletas.append((u3,u2,u1))
+                        tripletas +=1
+                        if u1 in network.contacts(u3):
+                            triangulos+=1
 
 
-        return (2*3*len(triangulos))/len(tripletas)
+            return (triangulos/2)/(tripletas/2)
 
 class Embeddedness(LocalMetric):
     # Element es el par (u,v) del que calcular la métrica

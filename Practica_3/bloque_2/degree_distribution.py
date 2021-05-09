@@ -12,32 +12,32 @@ import datetime
 
 def main():
     dir = "graph/"
-    #network = transforma_csv(dir,"small1.csv","small1_transformado.csv")
-    #G = estudiar_grafo(dir+"small1_transformado.csv","small1",dir)
-#    paradoja_amistad(network,grado_medio(G),"small1")
+    network = transforma_csv(dir,"small1.csv","small1_transformado.csv")
+    G,avg = estudiar_grafo(dir+"small1_transformado.csv","small1",dir)
+    paradoja_amistad(network,avg,"small1")
 
-    #network= transforma_csv(dir,"small2.csv","small2_transformado.csv")
-    #G  = estudiar_grafo(dir+"small2_transformado.csv","small2",dir)
-    #paradoja_amistad(network,grado_medio(G),"small2")
+    network= transforma_csv(dir,"small2.csv","small2_transformado.csv")
+    G,avg  = estudiar_grafo(dir+"small2_transformado.csv","small2",dir)
+    paradoja_amistad(network,avg,"small2")
 
-#    network= transforma_csv(dir,"small3.csv","small3_transformado.csv")
-    #G = estudiar_grafo(dir+"small3_transformado.csv","small3",dir)
-    #paradoja_amistad(network,grado_medio(G),"small3")
+    network= transforma_csv(dir,"small3.csv","small3_transformado.csv")
+    G,avg = estudiar_grafo(dir+"small3_transformado.csv","small3",dir)
+    paradoja_amistad(network,avg,"small3")
 
-    #network = transforma_csv(dir,"Erdös-Rényi.csv","Erdös-Rényi_transformado.csv")
-    #G = estudiar_grafo(dir+"Erdös-Rényi_transformado.csv","Erdös-Rényi",dir)
+    network = transforma_csv(dir,"Erdös-Rényi.csv","Erdös-Rényi_transformado.csv")
+    G,avg = estudiar_grafo(dir+"Erdös-Rényi_transformado.csv","Erdös-Rényi",dir)
     #dibujar_grafo(G,dir,"Erdös-Rényi")
-    #paradoja_amistad(network,grado_medio(G),"Erdös-Rényi")
+    paradoja_amistad(network,avg,"Erdös-Rényi")
 
-    #network = transforma_csv(dir,"Barabási-Albert.csv","Barabási-Albert_transformado.csv")
-    #G = estudiar_grafo(dir+"Barabási-Albert_transformado.csv","Barabási-Albert",dir)
+    network = transforma_csv(dir,"Barabási-Albert.csv","Barabási-Albert_transformado.csv")
+    G,avg = estudiar_grafo(dir+"Barabási-Albert_transformado.csv","Barabási-Albert",dir)
     #dibujar_grafo(G,dir,"Barabási-Albert")
-    #paradoja_amistad(network,grado_medio(G),"Barabási-Albert")
+    paradoja_amistad(network,avg,"Barabási-Albert")
 
     network = transforma_csv(dir,"facebook_combined.txt","facebook_combined_transformado.csv"," ")
     G,avg= estudiar_grafo(dir+"facebook_combined_transformado.csv","facebook_combined",dir)
-    dibujar_grafo(G,dir,"facebook_combined")
-    #paradoja_amistad(network,avg,"facebook_combined")
+#    dibujar_grafo(G,dir,"facebook_combined")
+    paradoja_amistad(network,avg,"facebook_combined")
 
 
 def transforma_csv(dir,csv,nombre,delim=","):
@@ -60,19 +60,19 @@ def estudiar_grafo(csv,nombre,dir):
     print("Estudiando grafo " + nombre)
     start = time.process_time()
     G = nx.read_adjlist(csv,",")
-    degree_sequence = sorted([d for n, d in G.degree()], reverse=True)
-    fig = plt.figure("Degree of "+ nombre, figsize=(8, 8))
+    #degree_sequence = sorted([d for n, d in G.degree()], reverse=True)
+    #fig = plt.figure("Degree of "+ nombre, figsize=(8, 8))
     avg = grado_medio(G)
-    fig.suptitle("Average Degree: " + str(avg))
-    ax1 = fig.add_subplot()
-    ax1.bar(*np.unique(degree_sequence, return_counts=True))
-    ax1.set_title("Degree histogram")
-    ax1.set_xlabel("Degree")
-    ax1.set_ylabel("# of Nodes")
-    ax1.set_yscale("log")
-    plt.savefig(dir+nombre+"degree.png")
+    #fig.suptitle("Average Degree: " + str(avg))
+    #ax1 = fig.add_subplot()
+    #ax1.bar(*np.unique(degree_sequence, return_counts=True))
+    #ax1.set_title("Degree histogram")
+    #ax1.set_xlabel("Degree")
+    #ax1.set_ylabel("# of Nodes")
+    #ax1.set_yscale("log")
+    #plt.savefig(dir+nombre+"degree.png")
 
-    plt.close()
+    #plt.close()
 
     timer(start)
 
@@ -127,7 +127,8 @@ def paradoja_amistad(network,avg,nombre):
         print("Se cumple la primera afirmación:"+ str(avg)+" <= " + str(mu))
     if avg >= median:
         print("Se cumple la segunda afirmación:"+ str(avg)+" >= " + str(median))
-
+    else:
+        print("No se cumple la segunda afirmación:"+ str(avg)+" <= " + str(median))
     timer(start)
 
 
