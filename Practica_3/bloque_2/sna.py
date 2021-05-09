@@ -4,6 +4,8 @@ import math
 import random
 import time
 import datetime
+
+
 # Clase que representa una red social de enlaces no dirigidos
 
 
@@ -146,7 +148,7 @@ class ClusteringCoefficient(Metric):
                         triangulos += 1
         # Como hemos contado mas triangulos y tripletas hay que dividirlos
         # por la mitad cada uno
-        return (triangulos / 2) / (tripletas / 2)
+        return triangulos / tripletas
 
 # Clase que implementa la metrica de Embeddeness
 
