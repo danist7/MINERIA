@@ -17,11 +17,11 @@ from recsys import *
 
 def main():
     print("=========================\nToy test")
-    toy_test("data/toy", '\t')
+    #toy_test("data/toy", '\t')
     print("=========================\nTesting toy dataset")
-    test_dataset("data/toy-ratings.dat", 1, 2, k=4, min=2, topn=4, cutoff=4)
+    #test_dataset("data/toy-ratings.dat", 1, 2, k=4, min=2, topn=4, cutoff=4)
     print("=========================\nTesting MovieLens \"latest-small\" dataset")
-    test_dataset("data/ratings.csv", 35, 1240, k=10, min=3, topn=5, cutoff=5, delimiter=',')
+    test_dataset("data/ratings.csv", 35, 1240, k=10, min=3, topn=5, cutoff=10, delimiter=',')
 
 
 # First tests on toy dataset, using a pre-constructed data split

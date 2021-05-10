@@ -632,6 +632,7 @@ class RMSE(Metric):
 def student_test():
     print("=========================\nTesting toy dataset")
     test_dataset("data/toy-ratings.dat", 1, 2, k=4, min=2, topn=4, cutoff=4)
+    #test_dataset("data/ratings.csv", 35, 1240, k=10, min=3, topn=5, cutoff=10, delimiter=',')
 
 
 def test_dataset(ratings_file, user, item, k, min, topn, cutoff, delimiter='\t'):
@@ -639,13 +640,14 @@ def test_dataset(ratings_file, user, item, k, min, topn, cutoff, delimiter='\t')
     test_recommender(ratings, k, topn)
     # Now produce a rating split to re-run the recommenders on the training data and evaluate them with the test data
     train, test = ratings.random_split(0.8)
-    metric = RMSE(test)
+    metrics = [Precision(test, cutoff=10, threshold=4), Recall(test, cutoff=10, threshold=4),RMSE(test)]
+
     # Double top n to test a slightly deeper ranking
-    evaluate_recommenders(train, metric, k, min, 2 * topn)
+    evaluate_recommenders(train, metrics, k, min, 2 * topn)
 
 
 def test_recommender(ratings, k, topn):
-    start = time.process_time()
+    """start = time.process_time()
     print("Creating item cosine similarity")
     sim = CosineItemSimilarity(ratings)
     timer(start)
@@ -660,7 +662,7 @@ def test_recommender(ratings, k, topn):
     recommendation = knn.recommend(topn)
     for user in itertools.islice(recommendation, 4):
         print("    User", user, "->", recommendation[user])
-    timer(start)
+    timer(start)"""
 
     start = time.process_time()
     print("Creating user Pearson similarity")
@@ -694,11 +696,11 @@ def evaluate_recommenders(training, metric, k, min, topn):
         training, sim, k, min), topn, metric)
 
 
-def evaluate_recommender(recommender, topn, metric):
+def evaluate_recommender(recommender, topn, metrics):
     print("Evaluating", recommender)
     recommendation = recommender.recommend(topn)
-
-    print("   ", metric, "=", metric.compute(recommendation))
+    for metric in metrics:
+        print("   ", metric, "=", metric.compute(recommendation))
 
 
 def timer(start):
