@@ -271,22 +271,33 @@ class Dijkstra:
 
     def compute(self, network, user):
         distancias = {}
-        marcados = set()
-        distancias[user] = 0
         a = user
+        nodos = network.users()
+        # -1 simboliza distancia infinita
+        for u in nodos:
+            distancias[u] = -1
+        distancias[user] = 0
 
-        while len(marcados) < len(network.users()):
-            for u in network.contacts(user):
-                if u in marcados:
+        while 1:
+            for u in network.contacts(a):
+                if u not in nodos:
                     continue
-                if u not in distancias:
+                # Si la distancia de u es infinito, se cumple la desigualdad.
+                # Sino, comprobamos la desigualdad, teniendo en cuenta que si la
+                # distancia al nod actual e sinfinito, no se va a cumplir
+                if (distancias[u] == -1 and distancias[a] != -1) or (distancias[u] > distancias[a] + 1 and distancias[a] != -1):
                     distancias[u] = distancias[a] + 1
-                    continue
-                dist = distancias[a] + 1
-                if distancias[u] > dist:
-                    distancias[u] = dist
-            marcados.add(a)
-            a = sorted(distancias.items(), key=lambda item: item[1])[0][0]
+            nodos.remove(a)
+            if(len(nodos) > 0):
+                restantes = {}
+                for u in nodos:
+                    if distancias[u] != -1:
+                        restantes[u] = distancias[u]
+
+                a = sorted(restantes.items(), key=lambda item: item[1])[0][0]
+
+            else:
+                break
         return distancias
 
 # Clase que implementa la creacion de grafos Amigos Comunes
@@ -438,10 +449,10 @@ def test_network(file, delimiter, topn, u, v, parse=0):
     print("User", u, "has", network.degree(u), "contacts")
 
     print("-------------------------")
-    #test_metric(Closeness(topn), network, u)
+    test_metric(Closeness(topn), network, u)
 
     print("-------------------------")
-    #test_global_metric(AverageShortestPath(), network)
+    test_global_metric(AverageShortestPath(), network)
 
 
 def test_metric(metric, network, example):
